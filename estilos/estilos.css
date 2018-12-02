@@ -7,8 +7,11 @@ body {
 }
 
 label {
-    font-weight: bold;
     color: white;
+}
+
+button {
+    margin-top: 2rem;
 }
 
 .container {
@@ -22,6 +25,7 @@ label {
 
 .row {
     text-align: center;
+    padding-top: 1rem;
 }
 
 
