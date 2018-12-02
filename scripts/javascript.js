@@ -1,6 +1,6 @@
 var request = new XMLHttpRequest();
 
-request.open('GET', 'http://strainapi.evanbusse.com/OQSVRIt/strains/search/all', true);
+request.open('GET', 'https://strainapi.evanbusse.com/OQSVRIt/strains/search/all', true);
 request.onload = function() {
     var marias = JSON.parse(this.response);
     
