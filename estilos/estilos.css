@@ -6,6 +6,11 @@ body {
     background-size: cover;
 }
 
+label {
+    font-weight: bold;
+    color: white;
+}
+
 .container {
     display: flex;
     flex-direction: column;
@@ -14,3 +19,9 @@ body {
     width: 100vw;
     max-width: 100vw;
 }
+
+.row {
+    text-align: center;
+}
+
+
