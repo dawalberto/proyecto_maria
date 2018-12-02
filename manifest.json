@@ -20,5 +20,6 @@
     ],
     "start_url": "index.html?launcher=true",
     "display": "standalone",
-    "orientation": "portrait"
+    "orientation": "portrait",
+    "background_color": "gray"
   }
