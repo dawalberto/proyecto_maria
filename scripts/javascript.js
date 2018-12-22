@@ -49,7 +49,7 @@ function effectsAll() {
                 arrayEffectsAll.push(effect);
         })
     })
-};
+}
 
 function flavorsAll() {
     arrayMarias.forEach(maria => {
@@ -58,7 +58,7 @@ function flavorsAll() {
                 arrayFlavorsAll.push(flavor);
         })
     })
-};
+}
 
 function fillSelects() {
     var selectEfecto = document.getElementById('selectEfecto');
@@ -79,7 +79,7 @@ function fillSelects() {
 
         selectSabor.add(opt);
     });
-};
+}
 
 var arrayMariasSearch = new Array();
 function searchMarias() {
@@ -92,8 +92,6 @@ function searchMarias() {
         if (arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsSum.indexOf(selectEfecto) >= 0)
             arrayMariasSearch.push(arrayMarias[i]);
     }
-
-    console.log(arrayMariasSearch);
 }
 
 function clickButtonSearch() {
@@ -105,6 +103,7 @@ function clickButtonSearch() {
     else {
         searchMarias();
         generateDescMarias();
+        generateCardsMarias();
     }
 }
 
@@ -126,4 +125,41 @@ function generateDescMarias() {
     }
 
     console.log(arrayMariasSearch);
+}
+
+function generateCardsMarias() {
+    console.log('generateCardsMarias function', arrayMariasSearch);
+    for(let i = 0; i < arrayMariasSearch.length; i++) {
+        var title = arrayMariasSearch[i].nom.toUpperCase();
+        var race = arrayMariasSearch[i].race.toUpperCase();
+        var desc = arrayMariasSearch[i].description;
+
+        var card = document.createElement('div');
+        card.classList.add('card');
+        
+        var cardBody = document.createElement('div');
+        cardBody.classList.add('card-body');
+
+        var h5 = document.createElement('h5');
+        h5.classList.add('card-title');
+        h5.textContent = title;
+
+        var h6 = document.createElement('h6');
+        h6.classList.add('card-subtitle');
+        h6.classList.add('mb-2');
+        h6.classList.add('text-muted');
+        h6.textContent = race;
+
+        var p = document.createElement('p');
+        p.classList.add('card-text');
+        p.textContent = desc;
+
+        cardBody.appendChild(h5);
+        cardBody.appendChild(h6);
+        cardBody.appendChild(p);
+
+        card.appendChild(cardBody);
+
+        document.getElementById('divCards').appendChild(card);
+    }
 }
