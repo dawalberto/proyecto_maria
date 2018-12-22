@@ -17,7 +17,7 @@ request.onload = function() {
         }
         effectsAll();
         flavorsAll();
-
+        
         fillSelects();
     }
 }
@@ -25,7 +25,7 @@ request.onload = function() {
 request.send();
 
 
-function Maria (id, nom, race, flavors, effects) {
+function Maria (id, nom, race, flavors, effects, desc) {
     this.id = id;
     this.nom = nom;
     this.race = race;
@@ -34,6 +34,7 @@ function Maria (id, nom, race, flavors, effects) {
     this.effectsN = effects['negative'];
     this.effectsP = effects['positive'];
     this.effectsSum = this.effectsM.concat(this.effectsN.concat(this.effectsP));
+    this.description = desc;
 } 
 
 var arrayMarias = new Array();
@@ -80,11 +81,12 @@ function fillSelects() {
     });
 };
 
+var arrayMariasSearch = new Array();
 function searchMarias() {
     var selectEfecto = document.getElementById('selectEfecto').value;
     var selectSabor = document.getElementById('selectSabor').value; 
 
-    var arrayMariasSearch = new Array();
+    arrayMariasSearch = [];
 
     for (let i = 0; i < arrayMarias.length; i++) {
         if (arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsSum.indexOf(selectEfecto) >= 0)
@@ -100,6 +102,28 @@ function clickButtonSearch() {
 
     if (selectEfecto == null || selectSabor == null)
         alert('SELECT ONE FLAVOR AND ONE EFFECT PLEASE');
-    else 
+    else {
         searchMarias();
+        generateDescMarias();
+    }
+}
+
+function generateDescMarias() {
+    var xhr = [], i;
+    for(i = 0; i < arrayMariasSearch.length; i++){ //for loop
+        (function(i){
+            xhr[i] = new XMLHttpRequest();
+            url = 'https://strainapi.evanbusse.com/OQSVRIt/strains/data/desc/' + arrayMariasSearch[i].id;
+            xhr[i].open("GET", url, true);
+            xhr[i].onreadystatechange = function(){
+                if (xhr[i].readyState === 4 && xhr[i].status === 200){
+                    var descMaria = JSON.parse(xhr[i].response);
+                    arrayMariasSearch[i].description = descMaria.desc;
+                }
+            };
+            xhr[i].send();
+        })(i);
+    }
+
+    console.log(arrayMariasSearch);
 }
