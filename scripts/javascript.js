@@ -79,3 +79,27 @@ function fillSelects() {
         selectSabor.add(opt);
     });
 };
+
+function searchMarias() {
+    var selectEfecto = document.getElementById('selectEfecto').value;
+    var selectSabor = document.getElementById('selectSabor').value; 
+
+    var arrayMariasSearch = new Array();
+
+    for (let i = 0; i < arrayMarias.length; i++) {
+        if (arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsSum.indexOf(selectEfecto) >= 0)
+            arrayMariasSearch.push(arrayMarias[i]);
+    }
+
+    console.log(arrayMariasSearch);
+}
+
+function clickButtonSearch() {
+    var selectEfecto = document.getElementById('selectEfecto').value;
+    var selectSabor = document.getElementById('selectSabor').value; 
+
+    if (selectEfecto == null || selectSabor == null)
+        alert('SELECT ONE FLAVOR AND ONE EFFECT PLEASE');
+    else 
+        searchMarias();
+}

@@ -9,27 +9,3 @@ body {
     font-family: 'Dosis', sans-serif;
 }
 
-label {
-    color: white;
-    font-size: 2rem;
-}
-
-button {
-    margin-top: 2rem;
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    min-height: 100vh;
-    width: 100vw;
-    max-width: 100vw;
-}
-
-.row {
-    text-align: center;
-    padding-top: 1rem;
-}
-
-
