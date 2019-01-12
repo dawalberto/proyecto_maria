@@ -1,29 +1,35 @@
-var request = new XMLHttpRequest();
+var marias;
+var arrayMarias = new Array();
+var arrayEffectsAll = new Array();
+var arrayFlavorsAll = new Array();
+var arrayMariasSearch = new Array();
 
-request.open('GET', 'https://strainapi.evanbusse.com/OQSVRIt/strains/search/all', true);
-request.onload = function() {
-    var marias = JSON.parse(this.response);
-    
-    if (request.status >= 200 && request.status < 400) {
-        for (var maria in marias) {
-            var id = marias[maria].id;
-            var nom = maria;
-            var race = marias[maria].race;
-            var flavors = marias[maria].flavors;
-            var effects = marias[maria].effects;
+
+function getAPIandFillMarias() {
+    fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
+        .then(response => response.json())
+        .then(json => {
+            marias = json;
+
+            for (let maria in marias) {
+                var id = marias[maria].id;
+                var nom = maria;
+                var race = marias[maria].race;
+                var flavors = marias[maria].flavors;
+                var effects = marias[maria].effects;
+
+                var strain = new Maria(id, nom, race, flavors, effects);
+                arrayMarias.push(strain);
+            }
+
+            generateDescMarias();
+
+            effectsAll();
+            flavorsAll();
             
-            var strain = new Maria(id, nom, race, flavors, effects);
-            arrayMarias.push(strain);
-        }
-        effectsAll();
-        flavorsAll();
-        
-        fillSelects();
-    }
+            fillSelects();
+        });
 }
-
-request.send();
-
 
 function Maria (id, nom, race, flavors, effects, desc) {
     this.id = id;
@@ -36,11 +42,6 @@ function Maria (id, nom, race, flavors, effects, desc) {
     this.effectsSum = this.effectsM.concat(this.effectsN.concat(this.effectsP));
     this.description = desc;
 } 
-
-var arrayMarias = new Array();
-var arrayEffectsAll = new Array();
-var arrayFlavorsAll = new Array();
-
 
 function effectsAll() {   
     arrayMarias.forEach(maria => {
@@ -81,7 +82,6 @@ function fillSelects() {
     });
 }
 
-var arrayMariasSearch = new Array();
 function searchMarias() {
     var selectEfecto = document.getElementById('selectEfecto').value;
     var selectSabor = document.getElementById('selectSabor').value; 
@@ -102,33 +102,46 @@ function clickButtonSearch() {
         alert('SELECT ONE FLAVOR AND ONE EFFECT PLEASE');
     else {
         searchMarias();
-        generateDescMarias();
         generateCardsMarias();
     }
 }
 
-function generateDescMarias() {
+/*function generateDescMarias() {
     var xhr = [], i;
-    for(i = 0; i < arrayMariasSearch.length; i++){ //for loop
+    for(i = 0; i < arrayMarias.length; i++){
         (function(i){
             xhr[i] = new XMLHttpRequest();
-            url = 'https://strainapi.evanbusse.com/OQSVRIt/strains/data/desc/' + arrayMariasSearch[i].id;
+            url = 'https://strainapi.evanbusse.com/OQSVRIt/strains/data/desc/' + arrayMarias[i].id;
             xhr[i].open("GET", url, true);
             xhr[i].onreadystatechange = function(){
                 if (xhr[i].readyState === 4 && xhr[i].status === 200){
                     var descMaria = JSON.parse(xhr[i].response);
-                    arrayMariasSearch[i].description = descMaria.desc;
+                    arrayMarias[i].description = descMaria.desc;
                 }
             };
             xhr[i].send();
         })(i);
     }
+}*/
 
-    console.log(arrayMariasSearch);
+function generateDescMarias() {
+    for (let i = 0; i < arrayMarias.length; i++) {
+        var id = arrayMarias[i].id;
+        var url = 'https://strainapi.evanbusse.com/OQSVRIt/strains/data/desc/' + id;
+        
+        fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            console.log(json.desc)
+            arrayMarias[i].description = json.desc;
+        })
+    }
 }
 
 function generateCardsMarias() {
+    document.getElementById('divCards').textContent = '';
     console.log('generateCardsMarias function', arrayMariasSearch);
+    
     for(let i = 0; i < arrayMariasSearch.length; i++) {
         var title = arrayMariasSearch[i].nom.toUpperCase();
         var race = arrayMariasSearch[i].race.toUpperCase();
@@ -136,6 +149,8 @@ function generateCardsMarias() {
 
         var card = document.createElement('div');
         card.classList.add('card');
+        card.classList.add('my-2');
+        card.classList.add('mx-0');
         
         var cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
