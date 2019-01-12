@@ -132,26 +132,31 @@ function generateDescMarias() {
         fetch(url)
         .then(response => response.json())
         .then(json => {
-            console.log(json.desc)
+            //console.log(json.desc)
             arrayMarias[i].description = json.desc;
         })
     }
 }
 
 function generateCardsMarias() {
-    document.getElementById('divCards').textContent = '';
     console.log('generateCardsMarias function', arrayMariasSearch);
-    
+    document.getElementById('rowRes').textContent = '';
+
     for(let i = 0; i < arrayMariasSearch.length; i++) {
         var title = arrayMariasSearch[i].nom.toUpperCase();
         var race = arrayMariasSearch[i].race.toUpperCase();
         var desc = arrayMariasSearch[i].description;
+        
 
+        var col = document.createElement('div');
+        col.classList.add('col-md-6');
+        col.classList.add('col-lg-4');
+        col.classList.add('my-2');
+        
         var card = document.createElement('div');
         card.classList.add('card');
-        card.classList.add('my-2');
-        card.classList.add('mx-0');
-        
+        card.classList.add('h-100');
+
         var cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
 
@@ -174,7 +179,8 @@ function generateCardsMarias() {
         cardBody.appendChild(p);
 
         card.appendChild(cardBody);
+        col.appendChild(card);
 
-        document.getElementById('divCards').appendChild(card);
+        document.getElementById('rowRes').appendChild(col);
     }
 }
