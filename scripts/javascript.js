@@ -132,7 +132,7 @@ function generateDescMarias() {
         fetch(url)
         .then(response => response.json())
         .then(json => {
-            //console.log(json.desc)
+            console.log(json.desc)
             arrayMarias[i].description = json.desc;
         })
     }
