@@ -1,21 +1,26 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis');
 
-/*body {
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
     background: url(../imgs/maria.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     font-family: 'Dosis', sans-serif;
-}*/
-
-label {
-    color: white;
-    font-size: 2rem;
 }
 
 button {
     margin-top: 2rem;
+}
+
+label {
+    color: white;
+    font-size: 2rem;
 }
 
 .container {

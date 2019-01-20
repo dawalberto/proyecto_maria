@@ -87,27 +87,66 @@ function fillSelects() {
 
 function searchMarias() {
     var selectEfecto = document.getElementById('selectEfecto').value;
-    var selectSabor = document.getElementById('selectSabor').value; 
+    var selectSabor = document.getElementById('selectSabor').value;
+
+    /*var checkMedical = document.getElementById('checkMedical').checked;
+    var checkPositive = document.getElementById('checkPositive').checked;
+    var checkNegative = document.getElementById('checkNegative').checked;*/
 
     arrayMariasSearch = [];
 
     for (let i = 0; i < arrayMarias.length; i++) {
         if (arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsSum.indexOf(selectEfecto) >= 0)
             arrayMariasSearch.push(arrayMarias[i]);
+
+        /*
+        //CHECKED ONLY MEDICAL
+        if (checkMedical && !checkPositive && !checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsM.indexOf(selectEfecto) >= 0)
+            arrayMariasSearch.push(arrayMarias[i]);
+        
+        //CHECKED ONLY POSITIVE
+        if (!checkMedical && checkPositive && !checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsP.indexOf(selectEfecto) >= 0)
+            arrayMariasSearch.push(arrayMarias[i]);
+
+        //CHECKED ONLY NEGATIVE
+        if (!checkMedical && !checkPositive && checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsN.indexOf(selectEfecto) >= 0)
+            arrayMariasSearch.push(arrayMarias[i]);
+
+        //CHECKED MEDICAL AND POSITIVE
+        if (checkMedical && checkPositive && !checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && (arrayMarias[i].effectsM.indexOf(selectEfecto) >= 0 || arrayMarias[i].effectsP.indexOf(selectEfecto) >= 0))
+            arrayMariasSearch.push(arrayMarias[i]);
+        
+        //CHECKED MEDICAL AND NEGATIVE
+        if (checkMedical && !checkPositive && checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && (arrayMarias[i].effectsM.indexOf(selectEfecto) >= 0 || arrayMarias[i].effectsN.indexOf(selectEfecto) >= 0))
+            arrayMariasSearch.push(arrayMarias[i]);
+
+        //CHECKED POSITIVE AND NEGATIVE
+        if (!checkMedical && checkPositive && checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && (arrayMarias[i].effectsP.indexOf(selectEfecto) >= 0 || arrayMarias[i].effectsN.indexOf(selectEfecto) >= 0))
+            arrayMariasSearch.push(arrayMarias[i]);
+        
+        //CHECKED ALL OR NONE
+        if ((!checkMedical && !checkPositive && !checkNegative) || (checkMedical && checkPositive && checkNegative) && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsSum.indexOf(selectEfecto) >= 0)
+        arrayMariasSearch.push(arrayMarias[i]);
+        */
     }
 }
 
 function clickButtonSearch() {
-    var selectEfecto = document.getElementById('selectEfecto').value;
-    var selectSabor = document.getElementById('selectSabor').value; 
+    searchMarias();
+    generateCardsMarias();
 
-    if (selectEfecto == null || selectSabor == null)
-        alert('SELECT ONE FLAVOR AND ONE EFFECT PLEASE');
-    else {
-        searchMarias();
-        generateCardsMarias();
+    if(arrayMariasSearch.length > 0) {
         document.getElementById('containerRes').style.display = 'block';
+        window.scrollTo(0, window.innerHeight);
+        /*var timerID = setInterval(function() {
+            window.scrollBy(0, 5);
+
+            if( window.pageYOffset >= window.innerHeight )
+                clearInterval(timerID);
+        }, 6);*/
     }
+    else
+        alert('NO STRAIN FOUND');
 }
 
 function generateDescMarias() {
@@ -125,7 +164,7 @@ function generateDescMarias() {
             
             document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
 
-            if (i == lengtharrayMarias - 1) {
+            if (i >= lengtharrayMarias - 5) {
                 document.getElementById('buttonSearch').disabled = false;
                 document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="fas fa-search"></span>';
             }
@@ -136,10 +175,25 @@ function generateDescMarias() {
 function generateCardsMarias() {
     document.getElementById('rowRes').textContent = '';
 
+    var selectEfecto = document.getElementById('selectEfecto').value;
+
     for(let i = 0; i < arrayMariasSearch.length; i++) {
         var title = arrayMariasSearch[i].nom.toUpperCase();
         var race = arrayMariasSearch[i].race.toUpperCase();
-        var desc = arrayMariasSearch[i].description;
+        var desc;
+        var effect;
+
+        if (arrayMariasSearch[i].description != null)
+            desc = arrayMariasSearch[i].description;
+        else
+            desc = 'WITHOUT DESCRIPTION'
+
+        if (arrayMariasSearch[i].effectsM.includes(selectEfecto))
+            effect = 'EFFECT - MEDICAL';
+        else if (arrayMariasSearch[i].effectsP.includes(selectEfecto))
+            effect = 'EFFECT - POSITIVE';
+        else
+            effect = 'EFFECT - NEGATIVE';
         
 
         var col = document.createElement('div');
@@ -154,22 +208,29 @@ function generateCardsMarias() {
         var cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
 
-        var h5 = document.createElement('h5');
-        h5.classList.add('card-title');
-        h5.textContent = title;
+        var h5title = document.createElement('h5');
+        h5title.classList.add('card-title');
+        h5title.textContent = title;
 
-        var h6 = document.createElement('h6');
-        h6.classList.add('card-subtitle');
-        h6.classList.add('mb-2');
-        h6.classList.add('text-muted');
-        h6.textContent = race;
+        var h6race = document.createElement('h6');
+        h6race.classList.add('card-subtitle');
+        h6race.classList.add('mb-2');
+        h6race.classList.add('text-muted');
+        h6race.textContent = race;
+
+        var h6effect = document.createElement('h6');
+        h6effect.classList.add('card-subtitle');
+        h6effect.classList.add('mb-2');
+        h6effect.classList.add('text-muted');
+        h6effect.textContent = effect;
 
         var p = document.createElement('p');
         p.classList.add('card-text');
         p.textContent = desc;
 
-        cardBody.appendChild(h5);
-        cardBody.appendChild(h6);
+        cardBody.appendChild(h5title);
+        cardBody.appendChild(h6race);
+        cardBody.appendChild(h6effect);
         cardBody.appendChild(p);
 
         card.appendChild(cardBody);
