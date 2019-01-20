@@ -1,13 +1,13 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis');
 
-body {
+/*body {
     background: url(../imgs/maria.jpg) no-repeat center center fixed; 
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
     font-family: 'Dosis', sans-serif;
-}
+}*/
 
 label {
     color: white;
@@ -23,8 +23,6 @@ button {
     flex-direction: column;
     justify-content: center;
     min-height: 95vh;
-    /*width: 100vw;
-    max-width: 100vw;*/
 }
 
 .row {
@@ -35,4 +33,14 @@ button {
 #containerRes {
     margin-top: 5vh;
     min-height: 0px;
+    display: none;
+}
+
+#loader {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient(to right, rgb(5, 97, 5), rgb(78, 209, 17));
+    z-index: 2;
+    text-align: center;
 }

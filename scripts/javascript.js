@@ -5,7 +5,7 @@ var arrayFlavorsAll = new Array();
 var arrayMariasSearch = new Array();
 
 
-function getAPIandFillMarias() {
+(function() {
     fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
         .then(response => response.json())
         .then(json => {
@@ -22,6 +22,9 @@ function getAPIandFillMarias() {
                 arrayMarias.push(strain);
             }
 
+            document.getElementById('loader').style.display = 'none';
+            document.getElementById('buttonSearch').disabled = true;
+
             generateDescMarias();
 
             effectsAll();
@@ -29,7 +32,7 @@ function getAPIandFillMarias() {
             
             fillSelects();
         });
-}
+})();
 
 function Maria (id, nom, race, flavors, effects, desc) {
     this.id = id;
@@ -103,43 +106,34 @@ function clickButtonSearch() {
     else {
         searchMarias();
         generateCardsMarias();
+        document.getElementById('containerRes').style.display = 'block';
     }
 }
 
-/*function generateDescMarias() {
-    var xhr = [], i;
-    for(i = 0; i < arrayMarias.length; i++){
-        (function(i){
-            xhr[i] = new XMLHttpRequest();
-            url = 'https://strainapi.evanbusse.com/OQSVRIt/strains/data/desc/' + arrayMarias[i].id;
-            xhr[i].open("GET", url, true);
-            xhr[i].onreadystatechange = function(){
-                if (xhr[i].readyState === 4 && xhr[i].status === 200){
-                    var descMaria = JSON.parse(xhr[i].response);
-                    arrayMarias[i].description = descMaria.desc;
-                }
-            };
-            xhr[i].send();
-        })(i);
-    }
-}*/
-
 function generateDescMarias() {
-    for (let i = 0; i < arrayMarias.length; i++) {
+    var lengtharrayMarias = arrayMarias.length;
+
+    for (let i = 0; i < lengtharrayMarias; i++) {
         var id = arrayMarias[i].id;
         var url = 'https://strainapi.evanbusse.com/OQSVRIt/strains/data/desc/' + id;
-        
+
         fetch(url)
         .then(response => response.json())
         .then(json => {
-            console.log(json.desc)
+            //console.log(json.desc)
             arrayMarias[i].description = json.desc;
+            
+            document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
+
+            if (i == lengtharrayMarias - 1) {
+                document.getElementById('buttonSearch').disabled = false;
+                document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="fas fa-search"></span>';
+            }
         })
     }
 }
 
 function generateCardsMarias() {
-    console.log('generateCardsMarias function', arrayMariasSearch);
     document.getElementById('rowRes').textContent = '';
 
     for(let i = 0; i < arrayMariasSearch.length; i++) {
