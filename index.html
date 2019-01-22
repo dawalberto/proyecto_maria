@@ -11,10 +11,38 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
     <link rel="stylesheet" href="./estilos/estilos.css">
 </head>
-<body id="test">
+<body>
     <div id="loader">
         <div id="divImgLoader">
             <img src="./icons/marijuana_128.png" alt="" id="imgLoader">
+        </div>
+    </div>
+
+    <div id="formInicio">
+        <div class="container">
+            <div class="row" id="divNombre">
+              <div class="col-md-4 col-lg-4">
+                <label for="inputNombre">NOMBRE</label>
+              </div>
+              <div class="col-md-4 col-lg-4">
+                <input type="text" id="inputNombre" class="form-control">
+              </div>
+              <div class="col-md-4 col-lg-4">
+                <span id="spanNombre">Error</span>
+              </div>
+            </div>
+
+            <div class="row" id="divEdad">
+                <div class="col-md-4 col-lg-4">
+                  <label for="inputEdad">EDAD EN AÑOS</label>
+                </div>
+                <div class="col-md-4 col-lg-4">
+                  <input type="tel" id="inputEdad" class="form-control">
+                </div>
+                <div class="col-md-4 col-lg-4">
+                  <span id="spanEdad">Error</span>
+                </div>
+            </div>
         </div>
     </div>
 
