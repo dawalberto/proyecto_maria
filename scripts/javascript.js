@@ -5,6 +5,12 @@ var arrayFlavorsAll = new Array();
 var arrayMariasSearch = new Array();
 
 
+let barProgress = document.getElementById('progress');
+window.addEventListener("scroll", () => {
+    let max = document.body.scrollHeight - innerHeight;
+    barProgress.style.width = `${(pageYOffset / max) * 100}%`;
+});
+
 (function() {
     fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
         .then(response => response.json())
@@ -29,12 +35,12 @@ var arrayMariasSearch = new Array();
 
             effectsAll();
             flavorsAll();
-            
+
             fillSelects();
         });
 })();
 
-function Maria (id, nom, race, flavors, effects, desc) {
+function Maria(id, nom, race, flavors, effects, desc) {
     this.id = id;
     this.nom = nom;
     this.race = race;
@@ -44,9 +50,9 @@ function Maria (id, nom, race, flavors, effects, desc) {
     this.effectsP = effects['positive'];
     this.effectsSum = this.effectsM.concat(this.effectsN.concat(this.effectsP));
     this.description = desc;
-} 
+}
 
-function effectsAll() {   
+function effectsAll() {
     arrayMarias.forEach(maria => {
         maria.effectsSum.forEach(effect => {
             if (!arrayEffectsAll.includes(effect))
@@ -69,7 +75,7 @@ function fillSelects() {
     var selectSabor = document.getElementById('selectSabor');
 
     arrayEffectsAll.forEach(effect => {
-        var opt = document.createElement('option');        
+        var opt = document.createElement('option');
         opt.value = effect;
         opt.text = effect.toUpperCase();
 
@@ -77,7 +83,7 @@ function fillSelects() {
     });
 
     arrayFlavorsAll.forEach(flavor => {
-        var opt = document.createElement('option');        
+        var opt = document.createElement('option');
         opt.value = flavor;
         opt.text = flavor.toUpperCase();
 
@@ -135,7 +141,7 @@ function clickButtonSearch() {
     searchMarias();
     generateCardsMarias();
 
-    if(arrayMariasSearch.length > 0) {
+    if (arrayMariasSearch.length > 0) {
         document.getElementById('containerRes').style.display = 'block';
         window.scrollTo(0, window.innerHeight);
         /*var timerID = setInterval(function() {
@@ -144,8 +150,7 @@ function clickButtonSearch() {
             if( window.pageYOffset >= window.innerHeight )
                 clearInterval(timerID);
         }, 6);*/
-    }
-    else
+    } else
         alert('NO STRAIN FOUND');
 }
 
@@ -157,18 +162,18 @@ function generateDescMarias() {
         var url = 'https://strainapi.evanbusse.com/OQSVRIt/strains/data/desc/' + id;
 
         fetch(url)
-        .then(response => response.json())
-        .then(json => {
-            //console.log(json.desc)
-            arrayMarias[i].description = json.desc;
-            
-            document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
+            .then(response => response.json())
+            .then(json => {
+                //console.log(json.desc)
+                arrayMarias[i].description = json.desc;
 
-            if (i >= lengtharrayMarias - 5) {
-                document.getElementById('buttonSearch').disabled = false;
-                document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="fas fa-search"></span>';
-            }
-        })
+                document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
+
+                if (i >= lengtharrayMarias - 5) {
+                    document.getElementById('buttonSearch').disabled = false;
+                    document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="fas fa-search"></span>';
+                }
+            })
     }
 }
 
@@ -177,7 +182,7 @@ function generateCardsMarias() {
 
     var selectEfecto = document.getElementById('selectEfecto').value;
 
-    for(let i = 0; i < arrayMariasSearch.length; i++) {
+    for (let i = 0; i < arrayMariasSearch.length; i++) {
         var title = arrayMariasSearch[i].nom.toUpperCase();
         var race = arrayMariasSearch[i].race.toUpperCase();
         var desc;
@@ -194,13 +199,13 @@ function generateCardsMarias() {
             effect = 'EFFECT - POSITIVE';
         else
             effect = 'EFFECT - NEGATIVE';
-        
+
 
         var col = document.createElement('div');
         col.classList.add('col-md-6');
         col.classList.add('col-lg-4');
         col.classList.add('my-2');
-        
+
         var card = document.createElement('div');
         card.classList.add('card');
         card.classList.add('h-100');
