@@ -15,13 +15,14 @@
 []6. Una carpeta denominada js que contenga las funciones JavaScript con los requerimientos que se piden en el proyecto.
 
 []7. Memoria del proyecto en pdf que incluya la siguiente información:
- []Título de la aplicación.
- []Nombre y apellidos.
- []Índice.
- []Objetivo de la aplicación.
- []Explicaciones de cada parte y su funcionamiento con capturas de pantalla.
- []Indicar los archivos (html o js) en donde está codificado cada requerimiento exigido.
- []Conclusiones.
+
+ * Título de la aplicación.
+ * Nombre y apellidos.
+ * Índice.
+ * Objetivo de la aplicación.
+ * Explicaciones de cada parte y su funcionamiento con capturas de pantalla.
+ * Indicar los archivos (html o js) en donde está codificado cada requerimiento exigido.
+ * Conclusiones.
 
 ## Se valorará: (3 puntos)
 1. El diseño y la presentación de la página debe tener un nivel estético aceptable
@@ -34,6 +35,7 @@ identificación de algunas partes del código o explicación de las mismas.
 se deberán señalar de esta manera:
 
 `<!--/////////////////////////// EVENTO DE RATÓN /////////////////////-->`
+
 ///////////////////////////////// EXPRESIÓN REGULAR /////////////////////
 
 4. Funcionamiento correcto de todas las partes de la página deberán funcionar
