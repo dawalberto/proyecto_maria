@@ -44,9 +44,12 @@ correctamente e incluir mensajes de error cuando se precise.
 5. Los requerimientos incluidos deberán tener una funcionalidad que tenga un
 sentido dentro de la aplicación.
 
+
 Observaciones:
--Se podrá utilizar el proyecto de la primera evaluación y adaptarlo a los nuevos
+
+- Se podrá utilizar el proyecto de la primera evaluación y adaptarlo a los nuevos
 requerimientos. En este caso, no deberá aparecer en la memoria la información
 referente a la primera evaluación.
--Los tres puntos que faltan hasta el 10 se consiguen con la nota de las prácticas
+
+- Los tres puntos que faltan hasta el 10 se consiguen con la nota de las prácticas
 del curso.
