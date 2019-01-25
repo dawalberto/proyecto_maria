@@ -1,6 +1,7 @@
 # Proyecto_maria - Proyecto para la 2ªevaluación de DWEC
 
-##Deberá incluir: (4 puntos)
+## Deberá incluir: (4 puntos)
+
 [] 1. Eventos de ratón (2 además de onclick).
 
 [] 2. Eventos de teclado para validaciones de campos (2 como mínimo).
@@ -22,7 +23,7 @@
  []Indicar los archivos (html o js) en donde está codificado cada requerimiento exigido.
  []Conclusiones.
 
-##Se valorará: (3 puntos)
+## Se valorará: (3 puntos)
 1. El diseño y la presentación de la página debe tener un nivel estético aceptable
 y se valorará la originalidad del tema elegido.
 
@@ -32,7 +33,7 @@ identificación de algunas partes del código o explicación de las mismas.
 3. Las partes de código (html o js) donde aparezcan los requerimientos exigidos,
 se deberán señalar de esta manera:
 
-<!--/////////////////////////// EVENTO DE RATÓN /////////////////////-->
+`<!--/////////////////////////// EVENTO DE RATÓN /////////////////////-->`
 ///////////////////////////////// EXPRESIÓN REGULAR /////////////////////
 
 4. Funcionamiento correcto de todas las partes de la página deberán funcionar
