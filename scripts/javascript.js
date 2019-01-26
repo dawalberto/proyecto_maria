@@ -95,45 +95,11 @@ function searchMarias() {
     var selectEfecto = document.getElementById('selectEfecto').value;
     var selectSabor = document.getElementById('selectSabor').value;
 
-    /*var checkMedical = document.getElementById('checkMedical').checked;
-    var checkPositive = document.getElementById('checkPositive').checked;
-    var checkNegative = document.getElementById('checkNegative').checked;*/
-
     arrayMariasSearch = [];
 
     for (let i = 0; i < arrayMarias.length; i++) {
         if (arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsSum.indexOf(selectEfecto) >= 0)
             arrayMariasSearch.push(arrayMarias[i]);
-
-        /*
-        //CHECKED ONLY MEDICAL
-        if (checkMedical && !checkPositive && !checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsM.indexOf(selectEfecto) >= 0)
-            arrayMariasSearch.push(arrayMarias[i]);
-        
-        //CHECKED ONLY POSITIVE
-        if (!checkMedical && checkPositive && !checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsP.indexOf(selectEfecto) >= 0)
-            arrayMariasSearch.push(arrayMarias[i]);
-
-        //CHECKED ONLY NEGATIVE
-        if (!checkMedical && !checkPositive && checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsN.indexOf(selectEfecto) >= 0)
-            arrayMariasSearch.push(arrayMarias[i]);
-
-        //CHECKED MEDICAL AND POSITIVE
-        if (checkMedical && checkPositive && !checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && (arrayMarias[i].effectsM.indexOf(selectEfecto) >= 0 || arrayMarias[i].effectsP.indexOf(selectEfecto) >= 0))
-            arrayMariasSearch.push(arrayMarias[i]);
-        
-        //CHECKED MEDICAL AND NEGATIVE
-        if (checkMedical && !checkPositive && checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && (arrayMarias[i].effectsM.indexOf(selectEfecto) >= 0 || arrayMarias[i].effectsN.indexOf(selectEfecto) >= 0))
-            arrayMariasSearch.push(arrayMarias[i]);
-
-        //CHECKED POSITIVE AND NEGATIVE
-        if (!checkMedical && checkPositive && checkNegative && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && (arrayMarias[i].effectsP.indexOf(selectEfecto) >= 0 || arrayMarias[i].effectsN.indexOf(selectEfecto) >= 0))
-            arrayMariasSearch.push(arrayMarias[i]);
-        
-        //CHECKED ALL OR NONE
-        if ((!checkMedical && !checkPositive && !checkNegative) || (checkMedical && checkPositive && checkNegative) && arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsSum.indexOf(selectEfecto) >= 0)
-        arrayMariasSearch.push(arrayMarias[i]);
-        */
     }
 }
 
@@ -144,12 +110,6 @@ function clickButtonSearch() {
     if (arrayMariasSearch.length > 0) {
         document.getElementById('containerRes').style.display = 'block';
         window.scrollTo(0, window.innerHeight);
-        /*var timerID = setInterval(function() {
-            window.scrollBy(0, 5);
-
-            if( window.pageYOffset >= window.innerHeight )
-                clearInterval(timerID);
-        }, 6);*/
     } else
         alert('NO STRAIN FOUND');
 }
@@ -164,12 +124,11 @@ function generateDescMarias() {
         fetch(url)
             .then(response => response.json())
             .then(json => {
-                //console.log(json.desc)
                 arrayMarias[i].description = json.desc;
 
                 document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
 
-                if (i >= lengtharrayMarias - 5) {
+                if (i >= lengtharrayMarias - 1) {
                     document.getElementById('buttonSearch').disabled = false;
                     document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="fas fa-search"></span>';
                 }
@@ -243,4 +202,8 @@ function generateCardsMarias() {
 
         document.getElementById('rowRes').appendChild(col);
     }
+}
+
+function validateForm() {
+    document.getElementById('formInicio').style.display = 'none';
 }

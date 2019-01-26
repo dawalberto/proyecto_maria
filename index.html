@@ -25,53 +25,66 @@
 
     <div id="formInicio">
         <div class="container">
-            <div class="row" id="divNombre">
-                <div class="col-md-4 col-lg-4">
-                    <label for="inputNombre">NOMBRE</label>
+            <div class="row justify-content-center" id="divNombre">
+                <div class="col-12 divLabelForm">
+                    <label for="inputNombre">NAME</label>
                 </div>
-                <div class="col-md-4 col-lg-4">
+                <div class="col-md-8 col-lg-6">
                     <input type="text" id="inputNombre" class="form-control">
                 </div>
-                <div class="col-md-4 col-lg-4">
-                    <span id="spanNombre">Error</span>
+                <div class="col-12 divSpanForm">
+                    <span id="spanNombre">ERROR</span>
+                </div>
+            </div>
+            <div class="row justify-content-center" id="divEdad">
+                <div class="col-12 divLabelForm">
+                    <label for="inputEdad">YEARS</label>
+                </div>
+                <div class="col-md-8 col-lg-6">
+                    <input type="tel" id="inputEdad" class="form-control">
+                </div>
+                <div class="col-12 divSpanForm">
+                    <span id="spanEdad">ERROR</span>
+                </div>
+            </div>
+            <div class="row justify-content-center" id="divCorreo">
+                <div class="col-12 divLabelForm">
+                    <label for="inputCorreo">EMAIL</label>
+                </div>
+                <div class="col-md-8 col-lg-6">
+                    <input type="tel" id="inputCorreo" class="form-control">
+                </div>
+                <div class="col-12 divSpanForm">
+                    <span id="spanCorreo">ERROR</span>
                 </div>
             </div>
 
-            <div class="row" id="divEdad">
-                <div class="col-md-4 col-lg-4">
-                    <label for="inputEdad">EDAD EN AÑOS</label>
+            <div class="row justify-content-center" id="divButtonForm">
+                <div class="col-md-8 col-lg-6">
+                    <button class="btn btn-success btn-lg btn-block" onclick="validateForm()">VALIDATE</button>
                 </div>
-                <div class="col-md-4 col-lg-4">
-                    <input type="tel" id="inputEdad" class="form-control">
-                </div>
-                <div class="col-md-4 col-lg-4">
-                    <span id="spanEdad">Error</span>
-                </div>
+
             </div>
         </div>
     </div>
-
+  
     <div class="container">
-
         <div class="row justify-content-center">
             <div class="col-12 divLabel">
                 <label for="selectEfecto" class="font-weight-normal">WHAT EFFECT ARE YOU LOOKING FOR?</label>
             </div>
         </div>
-
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 divInput">
                 <select name="selectEfecto" id="selectEfecto" class="form-control">
                 </select>
             </div>
         </div>
-
         <div class="row justify-content-center">
             <div class="col-12 divLabel">
                 <label for="selectSabor" class="font-weight-normal">WHAT FLAVOR DO YOU WANT?</label>
             </div>
         </div>
-
         <div class="row justify-content-center">
             <div class="col-md-8 col-lg-6 divInput">
                 <select name="selectSabor" id="selectSabor" class="form-control">                        
