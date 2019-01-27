@@ -95,6 +95,10 @@ function searchMarias() {
     var selectEfecto = document.getElementById('selectEfecto').value;
     var selectSabor = document.getElementById('selectSabor').value;
 
+    var checkSativa = document.getElementById('checkSativa').checked;
+    var checkIndica = document.getElementById('checkIndica').checked;
+    var checkHybrid = document.getElementById('checkHybrid').checked;
+
     arrayMariasSearch = [];
 
     for (let i = 0; i < arrayMarias.length; i++) {
@@ -128,7 +132,7 @@ function generateDescMarias() {
 
                 document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
 
-                if (i >= lengtharrayMarias - 1) {
+                if (i >= lengtharrayMarias - 5) {
                     document.getElementById('buttonSearch').disabled = false;
                     document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="fas fa-search"></span>';
                 }

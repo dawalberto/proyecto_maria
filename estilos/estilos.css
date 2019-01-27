@@ -13,10 +13,6 @@ body {
     font-family: 'Dosis', sans-serif;
 }
 
-button {
-    margin-top: 2rem;
-}
-
 label {
     color: white;
     font-size: 2rem;
@@ -26,7 +22,7 @@ label {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 95vh;
+    min-height: 100vh;
 }
 
 .row {
@@ -85,4 +81,10 @@ label {
     font-size: 1.3rem;
     font-weight: bold;
     visibility: hidden;
+}
+
+input[type=checkbox], input[type=radio] {
+    vertical-align: text-top;
+    position: relative;
+    bottom: 1px;
 }
