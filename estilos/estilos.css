@@ -1,14 +1,15 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis');
+
 html {
     scroll-behavior: smooth;
+}
+
+body {
     background: url(../imgs/maria.jpg) no-repeat center center fixed;
     -webkit-background-size: cover;
     -moz-background-size: cover;
     -o-background-size: cover;
     background-size: cover;
-}
-
-body {
     font-family: 'Dosis', sans-serif;
 }
 
@@ -44,7 +45,7 @@ label {
     width: 100%;
     height: 100%;
     /* background-image: linear-gradient(to right, rgb(5, 97, 5), rgb(78, 209, 17)); */
-    background-image: linear-gradient(to bottom, rgb(30, 197, 0),rgb(243, 247, 0), rgba(223, 0, 0, 0.842));
+    background-image: linear-gradient(to bottom, rgb(30, 197, 0),rgb(243, 247, 0), rgb(223, 0, 0));
     z-index: 2;
     text-align: center;
 }
