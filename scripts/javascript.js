@@ -210,4 +210,5 @@ function generateCardsMarias() {
 
 function validateForm() {
     document.getElementById('formInicio').style.display = 'none';
+    document.getElementById('divMain').style.display = 'flex';
 }
