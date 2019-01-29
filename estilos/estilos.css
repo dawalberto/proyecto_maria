@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis');
 
+html * {
+    max-height: 1000000px;
+}
+
 html {
     scroll-behavior: smooth;
 }
