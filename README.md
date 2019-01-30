@@ -6,7 +6,7 @@
 
 - [ ] 2. Eventos de teclado para validaciones de campos (2 como mínimo).
 
-- [ ] 3. Expresiones regulares (3 como mínimo).
+- [x] 3. Expresiones regulares (3 como mínimo).
 
 - [ ] 4. Empleo de cookies.
 
