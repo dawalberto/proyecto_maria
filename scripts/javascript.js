@@ -102,8 +102,23 @@ function searchMarias() {
     arrayMariasSearch = [];
 
     for (let i = 0; i < arrayMarias.length; i++) {
-        if (arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsSum.indexOf(selectEfecto) >= 0)
-            arrayMariasSearch.push(arrayMarias[i]);
+        
+        if (arrayMarias[i].flavors.indexOf(selectSabor) >= 0 && arrayMarias[i].effectsSum.indexOf(selectEfecto) >= 0) {
+
+            if (checkSativa && arrayMarias[i].race.toUpperCase() === 'SATIVA') {
+                arrayMariasSearch.push(arrayMarias[i]);
+            }
+
+            if (checkIndica && arrayMarias[i].race.toUpperCase() === 'INDICA') {
+                arrayMariasSearch.push(arrayMarias[i]);
+            }
+
+            if (checkHybrid && arrayMarias[i].race.toUpperCase() === 'HYBRID') {
+                arrayMariasSearch.push(arrayMarias[i]);
+            }
+
+        }
+
     }
 }
 
