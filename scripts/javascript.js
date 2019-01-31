@@ -339,7 +339,7 @@ function validateForm() {
     function validateEdad() {
 
         let error;
-        let regExpEdad = /^\d{2,}$/;
+        let regExpEdad = /^\d{1,}$/;
 
         if (inputEdad === '' || inputEdad === null) {
 
@@ -422,4 +422,11 @@ function validateForm() {
 
     }
     
+}
+
+
+function backToTop() {
+
+    window.scrollTo(0, 0);
+
 }
