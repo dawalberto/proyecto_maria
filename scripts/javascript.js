@@ -11,6 +11,8 @@ window.addEventListener("scroll", () => {
     let max = document.body.scrollHeight - innerHeight;
     barProgress.style.width = `${(pageYOffset / max) * 100}%`;
 
+    showAndHiddenBackToTop();
+
 });
 
 
@@ -430,3 +432,16 @@ function backToTop() {
     window.scrollTo(0, 0);
 
 }
+
+
+function showAndHiddenBackToTop() {
+
+    let spanDivBackToTop = document.getElementById('spanDivBackToTop');
+
+    if (pageYOffset < 100) {
+        spanDivBackToTop.style.visibility = 'hidden';
+    } else {
+        spanDivBackToTop.style.visibility = 'visible';
+    }
+
+};

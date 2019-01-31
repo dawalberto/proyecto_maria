@@ -99,7 +99,23 @@ input[type=checkbox], input[type=radio] {
 #divBackToTop {
     position: fixed;
     bottom: 15px;
-    right: 20px;
+    right: 25px;
     display: inline-block;
     cursor: pointer;
+}
+
+#spanDivBackToTop {
+    z-index: 3;
+    color: rgb(30, 197, 0);
+    opacity: 0.5;
+    filter: alpha(opacity=50); /* For IE8 and earlier */
+}
+
+#spanDivBackToTop:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+
+::-webkit-scrollbar { 
+    display: none; 
 }
