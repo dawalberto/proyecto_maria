@@ -419,6 +419,7 @@ function validateForm() {
     
     if (!nom && !edad && !email) {
 
+        setCookies();
         document.getElementById('formInicio').style.display = 'none';
         document.getElementById('divMain').style.display = 'flex';
 
@@ -445,3 +446,16 @@ function showAndHiddenBackToTop() {
     }
 
 };
+
+
+function setCookies() {
+
+    let inputNombre = 'nombre=' + document.getElementById('inputNombre').value;
+    let inputEdad = 'age=' + document.getElementById('inputEdad').value;
+    let inputCorreo = 'email=' + document.getElementById('inputCorreo').value;
+
+    document.cookie = inputNombre;
+    document.cookie = inputEdad;
+    document.cookie = inputCorreo;
+
+}
