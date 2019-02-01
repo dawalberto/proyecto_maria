@@ -448,6 +448,7 @@ function showAndHiddenBackToTop() {
 };
 
 
+// Las cookie son recordadas al cerrar y volver a abrir el navegador en Firefox y Microsoft Edge, en Chrome no funciona.
 function setCookies(expireDays) {
 
     let inputNombre = 'nombre=' + document.getElementById('inputNombre').value;
