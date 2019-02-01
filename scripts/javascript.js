@@ -458,6 +458,8 @@ function setCookies(expireDays) {
     date.setDate(date.getDate() + expireDays);
     let expires = 'expires=' + date.toUTCString();
 
+    console.log(expires);
+
     document.cookie = `${ inputNombre };${ expires };path=/`;
     document.cookie = `${ inputEdad };${ expires };path=/`;
     document.cookie = `${ inputCorreo };${ expires };path=/`;
