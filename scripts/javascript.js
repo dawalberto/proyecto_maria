@@ -419,7 +419,7 @@ function validateForm() {
     
     if (!nom && !edad && !email) {
 
-        setCookies();
+        setCookies(16);
         document.getElementById('formInicio').style.display = 'none';
         document.getElementById('divMain').style.display = 'flex';
 
@@ -448,14 +448,18 @@ function showAndHiddenBackToTop() {
 };
 
 
-function setCookies() {
+function setCookies(expireDays) {
 
     let inputNombre = 'nombre=' + document.getElementById('inputNombre').value;
     let inputEdad = 'age=' + document.getElementById('inputEdad').value;
     let inputCorreo = 'email=' + document.getElementById('inputCorreo').value;
 
-    document.cookie = inputNombre;
-    document.cookie = inputEdad;
-    document.cookie = inputCorreo;
+    let date = new Date();
+    date.setDate(date.getDate() + expireDays);
+    let expires = 'expires=' + date.toUTCString();
+
+    document.cookie = `${ inputNombre };${ expires };path=/`;
+    document.cookie = `${ inputEdad };${ expires };path=/`;
+    document.cookie = `${ inputCorreo };${ expires };path=/`;
 
 }
