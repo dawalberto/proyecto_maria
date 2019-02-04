@@ -38,6 +38,13 @@ fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
         document.getElementById('loader').style.display = 'none';
         document.getElementById('buttonSearch').disabled = true;
 
+        if (document.cookie !== '') {
+
+            document.getElementById('formInicio').style.display = 'none';
+            document.getElementById('divMain').style.display = 'flex';
+
+        }
+
         generateDescMarias();
 
         effectsAll();
@@ -419,7 +426,8 @@ function validateForm() {
     
     if (!nom && !edad && !email) {
 
-        setCookies(16);
+        let daysToExpire = 16;
+        setCookies(daysToExpire);
         document.getElementById('formInicio').style.display = 'none';
         document.getElementById('divMain').style.display = 'flex';
 
