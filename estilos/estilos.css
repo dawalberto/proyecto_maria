@@ -101,6 +101,7 @@ input[type=checkbox], input[type=radio] {
     bottom: 15px;
     right: 25px;
     display: inline-block;
+    visibility: hidden;
     cursor: pointer;
 }
 
