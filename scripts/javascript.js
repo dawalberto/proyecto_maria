@@ -466,3 +466,14 @@ function setCookies(expireDays) {
     document.cookie = `${ inputCorreo };${ expires };path=/`;
 
 }
+
+
+// Esta función no debería dejarse para producción, la tengo para hacer pruebas en desarrollo
+function deleteCookies() {
+
+    let expires = 'expires=Thu, 01 Jan 1970 00:00:00 UTC'
+    document.cookie = 'nombre=' + ';' + expires;
+    document.cookie = 'age=' + ';' + expires;
+    document.cookie = 'email=' + ';' + expires;
+    
+}
