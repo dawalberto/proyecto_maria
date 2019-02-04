@@ -6,7 +6,7 @@ let arrayMariasSearch = new Array();
 
 
 let barProgress = document.getElementById('progress');
-window.addEventListener("scroll", () => {
+window.addEventListener('scroll', () => {
 
     let max = document.body.scrollHeight - innerHeight;
     barProgress.style.width = `${(pageYOffset / max) * 100}%`;

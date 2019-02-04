@@ -96,12 +96,11 @@ input[type=checkbox], input[type=radio] {
     display: none;
 }
 
-#divBackToTop {
+#iBackToTop {
     position: fixed;
     bottom: 15px;
     right: 25px;
     display: inline-block;
-    visibility: hidden;
     cursor: pointer;
 }
 
@@ -110,6 +109,7 @@ input[type=checkbox], input[type=radio] {
     color: rgb(30, 197, 0);
     opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
+    visibility: hidden;
 }
 
 #spanDivBackToTop:hover {
