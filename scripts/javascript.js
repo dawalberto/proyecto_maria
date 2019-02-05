@@ -600,6 +600,5 @@ function getFavorites() {
     arrayFavorites = favorites;
 
     console.log('arrayFavorites', arrayFavorites);
-    console.log('favorites', favorites);
 
 }
