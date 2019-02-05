@@ -305,7 +305,8 @@ function generateCardsMarias() {
 
         if (arrayFavorites.indexOf(arrayMariasSearch[i].id) >= 0) {
 
-            spanicon.style.color = 'green';
+            spanicon.classList.add('favoritesColor');
+            console.log('favorita encontrada');
 
         }
 
@@ -552,11 +553,6 @@ function addEvents() {
 
 function addAndremoveFavorite() {
 
-    console.log('this.childNodes[0]', this.childNodes[0]);
-    console.log('this.childNodes[0]', this.childNodes[0].childNodes[0]);
-    console.log('this.childNodes[0]', this.childNodes[0].childNodes[1]);
-
-
     let id = this.childNodes[0].childNodes[0].id;
     let span = document.getElementById(id);
 
@@ -603,6 +599,9 @@ function addAndremoveFavoritesCookies(id, add) {
 function getFavorites() {
 
     let favorites = JSON.parse(getCookie('favorites'));
-    console.log(favorites);
+    arrayFavorites = favorites;
+
+    console.log('arrayFavorites', arrayFavorites);
+    console.log('favorites', favorites);
 
 }
