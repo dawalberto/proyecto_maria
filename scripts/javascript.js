@@ -305,7 +305,8 @@ function generateCardsMarias() {
 
         if (arrayFavorites.indexOf('spanicon' + arrayMariasSearch[i].id) >= 0) {
 
-            spanicon.classList.add('favoritesColor');
+            // spanicon.classList.add('favoritesColor');
+            spanicon.style.color = 'green';
             console.log('favorita encontrada');
 
         }
