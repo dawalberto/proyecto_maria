@@ -545,6 +545,10 @@ function addEvents() {
 
 function addAndremoveFavorite() {
 
+    console.log('this.childNodes[0]', this.childNodes[0]);
+    console.log('this.childNodes[1]', this.childNodes[1]);
+    console.log('this.childNodes[2]', this.childNodes[2]);
+
     let id = this.childNodes[1].childNodes[1].id;
     let span = document.getElementById(id);
 
