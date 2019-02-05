@@ -41,7 +41,7 @@ fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
 
         if (document.cookie !== '') {
 
-            // getFavorites();
+            getFavorites();
             document.getElementById('formInicio').style.display = 'none';
             document.getElementById('divMain').style.display = 'flex';
 
@@ -596,9 +596,11 @@ function addAndremoveFavoritesCookies(id, add) {
 
 function getFavorites() {
 
-    let favorites = JSON.parse(getCookie('favorites'));
+    let cokkiesFav = getCookie('favorites');
+    console.log('cokkiesFav', cokkiesFav);
+    let favorites = JSON.parse(cokkiesFav);
+    console.log('favorites', favorites);
     arrayFavorites = favorites;
-
     console.log('arrayFavorites', arrayFavorites);
 
 }
