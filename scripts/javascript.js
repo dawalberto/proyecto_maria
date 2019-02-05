@@ -214,7 +214,7 @@ function generateDescMarias() {
                 if (i >= lengtharrayMarias - 5) {
 
                     document.getElementById('buttonSearch').disabled = false;
-                    document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="fas fa-search spanSearch"></span>';
+                    document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="spanSearch"><i class="fas fa-search"></i></span>';
                 
                 }
 
@@ -301,6 +301,14 @@ function generateCardsMarias() {
         let pdescription = document.createElement('p');
         pdescription.classList.add('card-text');
         pdescription.textContent = desc;
+
+
+        if (arrayFavorites.indexOf(arrayMariasSearch[i].id) >= 0) {
+
+            spanicon.style.color = 'green';
+
+        }
+
 
         spanicon.appendChild(iicon);
 
@@ -535,7 +543,6 @@ function addEvents() {
 
     Array.from(classname).forEach(function(element) {
 
-        console.log(element)
         element.addEventListener('dblclick',  addAndremoveFavorite);
 
     });
