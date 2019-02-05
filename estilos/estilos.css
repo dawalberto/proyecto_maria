@@ -105,13 +105,13 @@ input[type=checkbox], input[type=radio] {
     display: none;
 }
 
-#iBackToTop {
+/* #iBackToTop {
     position: fixed;
     bottom: 15px;
     right: 25px;
     display: inline-block;
     cursor: pointer;
-}
+} */
 
 #spanDivBackToTop {
     z-index: 3;
@@ -119,6 +119,11 @@ input[type=checkbox], input[type=radio] {
     opacity: 0.5;
     filter: alpha(opacity=50); /* For IE8 and earlier */
     visibility: hidden;
+    position: fixed;
+    bottom: 15px;
+    right: 25px;
+    display: inline-block;
+    cursor: pointer;
 }
 
 #spanDivBackToTop:hover {
