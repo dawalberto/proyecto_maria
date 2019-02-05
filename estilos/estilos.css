@@ -1,8 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Dosis');
 
-html * {
-    max-height: 1000000px;
-}
 
 html {
     scroll-behavior: smooth;
@@ -15,11 +12,23 @@ body {
     -o-background-size: cover;
     background-size: cover;
     font-family: 'Dosis', sans-serif;
+
+    /* EVITAR QUE EL USUARIO PUEDA SELECCIONAR TEXTO */
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 label {
     color: white;
     font-size: 1.2em;
+}
+
+span {
+    color: gray;
 }
 
 .container {
@@ -118,5 +127,7 @@ input[type=checkbox], input[type=radio] {
 }
 
 ::-webkit-scrollbar { 
+    overflow: hidden;
     display: none; 
 }
+

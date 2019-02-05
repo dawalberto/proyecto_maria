@@ -3,6 +3,7 @@ let arrayMarias = new Array();
 let arrayEffectsAll = new Array();
 let arrayFlavorsAll = new Array();
 let arrayMariasSearch = new Array();
+let arrayFavorites = new Array();
 
 
 let barProgress = document.getElementById('progress');
@@ -42,6 +43,10 @@ fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
 
             document.getElementById('formInicio').style.display = 'none';
             document.getElementById('divMain').style.display = 'flex';
+
+        } else {
+
+            getFavorites();
 
         }
 
@@ -175,6 +180,7 @@ function clickButtonSearch() {
 
     if (arrayMariasSearch.length > 0) {
 
+        addEvents();
         document.getElementById('containerRes').style.display = 'block';
         window.scrollTo(0, window.innerHeight);
 
@@ -262,6 +268,7 @@ function generateCardsMarias() {
         col.classList.add('my-2');
 
         let card = document.createElement('div');
+        card.id = 'card' + arrayMariasSearch[i].id;
         card.classList.add('card');
         card.classList.add('h-100');
 
@@ -271,6 +278,13 @@ function generateCardsMarias() {
         let h5title = document.createElement('h5');
         h5title.classList.add('card-title');
         h5title.textContent = title;
+
+        let spanicon = document.createElement('span');
+        spanicon.id = 'spanicon' + arrayMariasSearch[i].id;
+        
+        let iicon = document.createElement('i');
+        iicon.classList.add('fas');
+        iicon.classList.add('fa-cannabis');
 
         let h6race = document.createElement('h6');
         h6race.classList.add('card-subtitle');
@@ -288,6 +302,9 @@ function generateCardsMarias() {
         pdescription.classList.add('card-text');
         pdescription.textContent = desc;
 
+        spanicon.appendChild(iicon);
+
+        cardBody.appendChild(spanicon);
         cardBody.appendChild(h5title);
         cardBody.appendChild(h6race);
         cardBody.appendChild(h6effect);
@@ -457,21 +474,123 @@ function showAndHiddenBackToTop() {
 
 
 // Las cookie son recordadas al cerrar y volver a abrir el navegador en Firefox y Microsoft Edge, en Chrome no funciona.
-function setCookies(expireDays) {
-
-    let inputNombre = 'nombre=' + document.getElementById('inputNombre').value;
-    let inputEdad = 'age=' + document.getElementById('inputEdad').value;
-    let inputCorreo = 'email=' + document.getElementById('inputCorreo').value;
+function setCookies(expireDays, cookie) {
 
     let date = new Date();
     date.setDate(date.getDate() + expireDays);
     let expires = 'expires=' + date.toUTCString();
-
     console.log(expires);
 
-    document.cookie = `${ inputNombre };${ expires };path=/`;
-    document.cookie = `${ inputEdad };${ expires };path=/`;
-    document.cookie = `${ inputCorreo };${ expires };path=/`;
+    if (cookie) {
+
+        document.cookie = `${ cookie };${ expires };path=/`;
+
+    } else {
+
+        let inputNombre = 'nombre=' + document.getElementById('inputNombre').value;
+        let inputEdad = 'age=' + document.getElementById('inputEdad').value;
+        let inputCorreo = 'email=' + document.getElementById('inputCorreo').value;
+        
+        document.cookie = `${ inputNombre };${ expires };path=/`;
+        document.cookie = `${ inputEdad };${ expires };path=/`;
+        document.cookie = `${ inputCorreo };${ expires };path=/`;
+
+    }
 
 }
 
+
+function getCookie(cname) {
+
+    let name = cname + '=';
+    let decodedCookie = decodeURIComponent(document.cookie);
+    let ca = decodedCookie.split(';');
+
+    for(let i = 0; i <ca.length; i++) {
+
+        let c = ca[i];
+
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+
+        if (c.indexOf(name) == 0) {
+
+        return c.substring(name.length, c.length);
+
+        }
+
+    }
+
+    return '';
+}
+
+
+// A partir de esta linea empiezan las funciones para añadir y eliminar marias a favoritos usando las cookies para ello.
+
+
+function addEvents() {
+
+    let classname = document.getElementsByClassName("card");
+
+    Array.from(classname).forEach(function(element) {
+
+        console.log(element)
+        element.addEventListener('dblclick',  addAndremoveFavorite);
+
+    });
+
+}
+
+
+function addAndremoveFavorite() {
+
+    let id = this.childNodes[1].childNodes[1].id;
+    let span = document.getElementById(id);
+
+    if (span.style.color === 'green') {
+
+        // REMOVE FAVORITE
+        span.style.color = 'gray';
+        addAndremoveFavoritesCookies(id);
+
+    } else {
+
+        // ADD FAVORITE
+        span.style.color = 'green';
+        addAndremoveFavoritesCookies(id, 'add');
+
+    }
+
+    console.log(arrayFavorites);
+
+}
+
+
+function addAndremoveFavoritesCookies(id, add) {
+
+    if (add) {
+
+        arrayFavorites.push(id);
+
+    } else {
+
+        let pos = arrayFavorites.indexOf(id);
+        arrayFavorites.splice(pos, 1);
+
+    }
+
+    let arrayStringify = JSON.stringify(arrayFavorites);
+    let cookie = 'favorites=' + arrayStringify;
+    setCookies(16, cookie);
+
+    console.log('document.cookie', document.cookie)
+}
+
+
+function getFavorites() {
+
+    let favorites = JSON.parse(getCookie('favorites'));
+    console.log(favorites);
+
+}
