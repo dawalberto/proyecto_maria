@@ -6,16 +6,6 @@ let arrayMariasSearch = new Array();
 let arrayFavorites = new Array();
 
 
-let barProgress = document.getElementById('progress');
-window.addEventListener('scroll', () => {
-
-    let max = document.body.scrollHeight - innerHeight;
-    barProgress.style.width = `${(pageYOffset / max) * 100}%`;
-
-    showAndHiddenBackToTop();
-
-});
-
 
 fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
     .then(response => response.json())
@@ -468,20 +458,6 @@ function backToTop() {
 }
 
 
-function showAndHiddenBackToTop() {
-
-    let spanDivBackToTop = document.getElementById('spanDivBackToTop');
-
-    if (pageYOffset < 100) {
-        spanDivBackToTop.style.visibility = 'hidden';
-    } else {
-        spanDivBackToTop.style.visibility = 'visible';
-    }
-
-};
-
-
-// Las cookie son recordadas al cerrar y volver a abrir el navegador en Firefox y Microsoft Edge, en Chrome no funciona.
 function setCookies(expireDays, cookie) {
 
     let date = new Date();
@@ -534,9 +510,32 @@ function getCookie(cname) {
 }
 
 
+// Evento de raton usado para agrandar o disminuir la barra de progreso según nuestra navegación por la página.
+let barProgress = document.getElementById('progress');
+window.addEventListener('scroll', () => {
+
+    let max = document.body.scrollHeight - innerHeight;
+    barProgress.style.width = `${(pageYOffset / max) * 100}%`;
+
+    showAndHiddenBackToTop();
+
+});
+
+
+function showAndHiddenBackToTop() {
+
+    let spanDivBackToTop = document.getElementById('spanDivBackToTop');
+
+    if (pageYOffset < 100) {
+        spanDivBackToTop.style.visibility = 'hidden';
+    } else {
+        spanDivBackToTop.style.visibility = 'visible';
+    }
+
+};
+
+
 // A partir de esta linea empiezan las funciones para añadir y eliminar marias a favoritos usando las cookies para ello.
-
-
 function addEvents() {
 
     let classname = document.getElementsByClassName("card");
@@ -605,3 +604,4 @@ function getFavorites() {
     console.log('arrayFavorites', arrayFavorites);
 
 }
+// Aquí terminan las funciones para añadir y eliminar marias a favoritos usando las cookies
