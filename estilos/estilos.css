@@ -126,7 +126,7 @@ input[type=checkbox], input[type=radio] {
     filter: alpha(opacity=100); /* For IE8 and earlier */
 }
 
-#spanSearch {
+.spanSearch {
     color: white;
 }
 

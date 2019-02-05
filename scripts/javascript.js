@@ -303,7 +303,7 @@ function generateCardsMarias() {
         pdescription.textContent = desc;
 
 
-        if (arrayFavorites.indexOf(arrayMariasSearch[i].id) >= 0) {
+        if (arrayFavorites.indexOf('spanicon' + arrayMariasSearch[i].id) >= 0) {
 
             spanicon.classList.add('favoritesColor');
             console.log('favorita encontrada');
