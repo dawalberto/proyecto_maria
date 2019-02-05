@@ -41,7 +41,7 @@ fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
 
         if (document.cookie !== '') {
 
-            getFavorites();
+            // getFavorites();
             document.getElementById('formInicio').style.display = 'none';
             document.getElementById('divMain').style.display = 'flex';
 
