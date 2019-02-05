@@ -8,11 +8,11 @@
 
 - [x] 3. Expresiones regulares (3 como mínimo).
 
-- [ ] 4. Empleo de cookies.
+- [x] 4. Empleo de cookies.
 
 - [x] 5. DOM: creación de varios elementos de forma dinámica en el documento utilizando las propiedades y métodos necesarios para ello.
 
-- [ ] 6. Una carpeta denominada js que contenga las funciones JavaScript con los requerimientos que se piden en el proyecto.
+- [x] 6. Una carpeta denominada js que contenga las funciones JavaScript con los requerimientos que se piden en el proyecto.
 
 - [ ] 7. Memoria del proyecto en pdf que incluya la siguiente información:
 

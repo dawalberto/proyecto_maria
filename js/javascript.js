@@ -268,6 +268,7 @@ function generateCardsMarias() {
         card.id = 'card' + arrayMariasSearch[i].id;
         card.classList.add('card');
         card.classList.add('h-100');
+        card.classList.add('cursorPointer');
 
         let cardBody = document.createElement('div');
         cardBody.classList.add('card-body');
