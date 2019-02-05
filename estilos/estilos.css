@@ -126,6 +126,10 @@ input[type=checkbox], input[type=radio] {
     filter: alpha(opacity=100); /* For IE8 and earlier */
 }
 
+#spanSearch {
+    color: white;
+}
+
 ::-webkit-scrollbar { 
     overflow: hidden;
     display: none; 
