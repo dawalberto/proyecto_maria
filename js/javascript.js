@@ -26,7 +26,7 @@ fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
 
         }
 
-        document.getElementById('loader').style.display = 'none';
+        animar('#loader', 'fadeOut', 'stylenone');
         document.getElementById('buttonSearch').disabled = true;
 
         if (document.cookie !== '') {
@@ -198,14 +198,14 @@ function generateDescMarias() {
 
                 document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
 
-                if (i >= lengtharrayMarias - 5) {
+                if (i >= lengtharrayMarias - 10) {
 
                     document.getElementById('buttonSearch').disabled = false;
                     document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="spanSearch"><i class="fas fa-search"></i></span>';
                 
                 }
 
-            })
+            });
 
     }
 
@@ -450,7 +450,8 @@ function validateForm() {
 
         let daysToExpire = 16;
         setCookies(daysToExpire);
-        document.getElementById('formInicio').style.display = 'none';
+
+        animar('#formInicio', 'slideOutUp', 'stylenone');
         document.getElementById('divMain').style.display = 'flex';
 
     }
@@ -615,13 +616,17 @@ function getFavorites() {
 // Aquí terminan las funciones para añadir y eliminar marias a favoritos usando las cookies
 
 
-function animar(elem, effect) {
+function animar(elem, effect, stylenone) {
             
     const element =  document.querySelector(elem);
     element.classList.add('animated', effect);
     element.addEventListener('animationend', function() { 
 
         element.classList.remove('animated', effect);
+
+        if (stylenone) {
+            element.style.display = 'none';
+        }
 
     });
     
