@@ -649,8 +649,19 @@ function animar(elem, effect, stylenone) {
 function textContentTabHowItWorks() {
 
     let user = getCookie('nombre');
+    let date = new Date();
+    let hour = date.getHours();
+    let welcome;
 
-    let message = `<p> Welcome ${ user }</p>`;
+    if (hour >= 0 && hour <= 14) {
+        welcome = 'Good morning';
+    } else if (hour >= 15 && hour <= 20) {
+        welcome = 'Good afternoon';
+    } else {
+        welcome = 'Good evening';
+    }
+
+    let message = `<p> ${ welcome } ${ user }!</p>`;
 
     return message;
 
