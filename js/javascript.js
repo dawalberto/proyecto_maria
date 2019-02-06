@@ -335,7 +335,8 @@ function validateForm() {
         
         if (inputNombre === '' || inputNombre === null) {
 
-            spanNombre.textContent = 'THIS FIELD IS REQUIRED';
+            spanNombre.textContent = 'THIS FIELD IS REQUIRED*';
+            animar(`#${spanNombre.id}`, 'fadeIn');
             spanNombre.style.visibility = 'visible';
             error = true;
 
@@ -349,6 +350,7 @@ function validateForm() {
             } else {
 
                 spanNombre.textContent = 'THIS FIELD ONLY ALLOWS LETTERS';
+                animar(`#${spanNombre.id}`, 'fadeIn');
                 spanNombre.style.visibility = 'visible';
                 error = true;
 
@@ -367,7 +369,8 @@ function validateForm() {
 
         if (inputEdad === '' || inputEdad === null) {
 
-            spanEdad.textContent = 'THIS FIELD IS REQUIRED';
+            spanEdad.textContent = 'THIS FIELD IS REQUIRED*';
+            animar(`#${spanEdad.id}`, 'fadeIn');
             spanEdad.style.visibility = 'visible';
             error = true;
 
@@ -383,6 +386,7 @@ function validateForm() {
                 } else {
 
                     spanEdad.textContent = 'SORRY THIS PAGE IS ONLY FOR ADULTS';
+                    animar(`#${spanEdad.id}`, 'fadeIn');
                     spanEdad.style.visibility = 'visible';
                     error = true;
 
@@ -391,6 +395,7 @@ function validateForm() {
             } else {
 
                 spanEdad.textContent = 'THIS FIELD ONLY ALLOWS NUMBERS';
+                animar(`#${spanEdad.id}`, 'fadeIn');
                 spanEdad.style.visibility = 'visible';
                 error = true;
 
@@ -409,7 +414,8 @@ function validateForm() {
 
         if (inputCorreo === '' || inputCorreo === null) {
 
-            spanCorreo.textContent = 'THIS FIELD IS REQUIRED';
+            spanCorreo.textContent = 'THIS FIELD IS REQUIRED*';
+            animar(`#${spanCorreo.id}`, 'fadeIn');
             spanCorreo.style.visibility = 'visible';
             error = true;
 
@@ -423,6 +429,7 @@ function validateForm() {
             } else {
 
                 spanCorreo.textContent = 'NOT VALID EMAIL';
+                animar(`#${spanCorreo.id}`, 'fadeIn');
                 spanCorreo.style.visibility = 'visible';
                 error = true;
 
