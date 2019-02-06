@@ -7,7 +7,9 @@ let arrayFavorites = new Array();
 
 
 
-fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
+function getData() {
+
+    fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
     .then(response => response.json())
     .then(json => {
 
@@ -46,6 +48,8 @@ fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
         fillSelects();
 
     });
+    
+}
 
 
 function Maria(id, nom, race, flavors, effects, desc) {
@@ -661,7 +665,15 @@ function textContentTabHowItWorks() {
         welcome = 'Good evening';
     }
 
-    let message = `<p> ${ welcome } ${ user }!</p>`;
+    let message = `<p>${ welcome } ${ user }!</p>
+        <p>In this page you can search any type of marijuana selecting the effect and flawor that you want</p>
+        <p>Don't worry if you don't know what is Sativa, Indica or Hibryd. This page is oriented too to people that never smoke weed and not know nathing about the world of the marijuana</p>
+        <p>In the tab <a href="#nav-races">RACES</a> you can find the explain of the marijuana types if you want know</p>
+        <p>Fine, the functioning is sample</p> 
+        <p>1. Select the effect and flawor that you want and check the races that you want</p>
+        <p>2. Then click the button 'SEARCH'</p> 
+        <p>3. Wow! now you can see all weeds whit the effect and flawor that you have chosen</p>
+        <p>4. And finally you can add weeds to favorites doble click in these</p>`;
 
     return message;
 
