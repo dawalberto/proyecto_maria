@@ -668,7 +668,7 @@ function textContentTabHowItWorks() {
     let message = `<p>${ welcome } ${ user }!</p>
         <p>In this page you can search any type of marijuana selecting the effect and flawor that you want</p>
         <p>Don't worry if you don't know what is Sativa, Indica or Hibryd. This page is oriented too to people that never smoke weed and not know nathing about the world of the marijuana</p>
-        <p>In the tab <a href="#nav-races">RACES</a> you can find the explain of the marijuana types if you want know</p>
+        <p>In the tab 'RACES' you can find the explain of the marijuana types if you want know</p>
         <p>Fine, the functioning is sample</p> 
         <p>1. Select the effect and flawor that you want and check the races that you want</p>
         <p>2. Then click the button 'SEARCH'</p> 
@@ -678,3 +678,33 @@ function textContentTabHowItWorks() {
     return message;
 
 }
+
+
+function showAndHiddenTab(idTab, idContentTab, url) {
+
+    location.href = url;
+
+    let clasesTab = document.getElementById(idTab).className;
+    let clasesTabContent = document.getElementById(idContentTab).className;
+
+    clasesTab = clasesTab.split(' ');
+    clasesTabContent = clasesTabContent.split(' ');
+
+
+    if (clasesTab.filter(elem => ['active', 'show'].includes(elem)).length === 2 && clasesTabContent.filter(elem => ['active', 'show'].includes(elem)).length === 2) {
+
+        setTimeout( () => {
+
+            document.getElementById(idTab).classList.remove('active');
+            document.getElementById(idTab).classList.remove('show');
+            document.getElementById(idContentTab).classList.remove('active');
+            document.getElementById(idContentTab).classList.remove('show');
+
+        }, 100);
+
+    }
+
+}
+
+
+

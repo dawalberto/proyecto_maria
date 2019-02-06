@@ -77,10 +77,10 @@
   
     <!-- NAV -->
     <nav id="nav">
-        <div class="nav nav-tabs bg-light fixed-top" id="nav-tab" role="tablist">
-            <a class="nav-item nav-link" id="nav-howitworks-tab" data-toggle="tab" href="#nav-howitworks" role="tab" aria-controls="nav-howitworks" aria-selected="true">HOW IT WORKS</a>
-            <a class="nav-item nav-link" id="nav-races-tab" data-toggle="tab" href="#nav-races" role="tab" aria-controls="nav-races" aria-selected="false">RACES</a>
-            <a class="nav-item nav-link" id="nav-user-tab" data-toggle="tab" href="#nav-user" role="tab" aria-controls="nav-user" aria-selected="false">USER</a>
+        <div class="nav nav-tabs bg-dark fixed-top" id="nav-tab" role="tablist">
+            <a class="nav-item nav-link" id="nav-howitworks-tab" data-toggle="tab" href="#nav-howitworks" onclick="showAndHiddenTab('nav-howitworks-tab', 'nav-howitworks', '#nav-howitworks')" role="tab" aria-controls="nav-howitworks" aria-selected="true">HOW IT WORKS</a>
+            <a class="nav-item nav-link" id="nav-races-tab" data-toggle="tab" href="#nav-races" onclick="showAndHiddenTab('nav-races-tab', 'nav-races', '#nav-races')" role="tab" aria-controls="nav-races" aria-selected="false">RACES</a>
+            <a class="nav-item nav-link" id="nav-user-tab" data-toggle="tab" href="#nav-user" onclick="showAndHiddenTab('nav-user-tab', 'nav-user', '#nav-user')" role="tab" aria-controls="nav-user" aria-selected="false">USER</a>
         </div>
     </nav>
     <div class="tab-content" id="nav-tabContent">

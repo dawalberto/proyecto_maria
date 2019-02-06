@@ -160,4 +160,14 @@ input[type=checkbox], input[type=radio] {
 
 .nav-tabs {
     z-index: 2;
+    border-bottom: 0;
+}
+
+a {
+    color: white;
+}
+
+a:hover {
+    /* color: #007bff; */
+    color: rgb(30, 197, 0);
 }
