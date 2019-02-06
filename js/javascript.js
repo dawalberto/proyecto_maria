@@ -31,6 +31,7 @@ fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
 
         if (document.cookie !== '') {
 
+            document.getElementById('nav-howitworks').innerHTML = textContentTabHowItWorks();
             getFavorites();
             document.getElementById('formInicio').style.display = 'none';
             document.getElementById('divMain').style.display = 'flex';
@@ -451,6 +452,8 @@ function validateForm() {
         let daysToExpire = 16;
         setCookies(daysToExpire);
 
+        document.getElementById('nav-howitworks').innerHTML = textContentTabHowItWorks();
+
         animar('#formInicio', 'slideOutUp', 'stylenone');
         document.getElementById('divMain').style.display = 'flex';
 
@@ -532,12 +535,22 @@ window.addEventListener('scroll', () => {
 
 function showAndHiddenBackToTop() {
 
+    let nav = document.getElementById('nav');
+    let navtabContent = document.getElementById('nav-tabContent'); 
     let spanDivBackToTop = document.getElementById('spanDivBackToTop');
 
     if (pageYOffset < 100) {
+
         spanDivBackToTop.style.visibility = 'hidden';
+        nav.style.display = 'block';
+        navtabContent.style.display = 'block';
+
     } else {
+
         spanDivBackToTop.style.visibility = 'visible';
+        nav.style.display = 'none';
+        navtabContent.style.display = 'none';
+
     }
 
 };
@@ -630,4 +643,15 @@ function animar(elem, effect, stylenone) {
 
     });
     
+}
+
+
+function textContentTabHowItWorks() {
+
+    let user = getCookie('nombre');
+
+    let message = `<p> Welcome ${ user }</p>`;
+
+    return message;
+
 }
