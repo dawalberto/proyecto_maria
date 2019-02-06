@@ -267,8 +267,8 @@ function generateCardsMarias() {
         h5title.classList.add('card-title');
         h5title.textContent = title;
 
-        let spanicon = document.createElement('span');
-        spanicon.id = 'spanicon' + arrayMariasSearch[i].id;
+        let h3icon = document.createElement('h3');
+        h3icon.id = 'h3icon' + arrayMariasSearch[i].id;
         
         let iicon = document.createElement('i');
         iicon.classList.add('fas');
@@ -291,18 +291,18 @@ function generateCardsMarias() {
         pdescription.textContent = desc;
 
 
-        if (arrayFavorites.indexOf('spanicon' + arrayMariasSearch[i].id) >= 0) {
+        if (arrayFavorites.indexOf('h3icon' + arrayMariasSearch[i].id) >= 0) {
 
-            // spanicon.classList.add('favoritesColor');
-            spanicon.style.color = 'green';
+            // h3icon.classList.add('favoritesColor');
+            h3icon.style.color = 'green';
             console.log('favorita encontrada');
 
         }
 
 
-        spanicon.appendChild(iicon);
+        h3icon.appendChild(iicon);
 
-        cardBody.appendChild(spanicon);
+        cardBody.appendChild(h3icon);
         cardBody.appendChild(h5title);
         cardBody.appendChild(h6race);
         cardBody.appendChild(h6effect);
@@ -552,18 +552,19 @@ function addEvents() {
 function addAndremoveFavorite() {
 
     let id = this.childNodes[0].childNodes[0].id;
-    let span = document.getElementById(id);
+    let h3icon = document.getElementById(id);
 
-    if (span.style.color === 'green') {
+    if (h3icon.style.color === 'green') {
 
         // REMOVE FAVORITE
-        span.style.color = 'gray';
+        h3icon.style.color = 'gray';
         addAndremoveFavoritesCookies(id);
 
     } else {
 
         // ADD FAVORITE
-        span.style.color = 'green';
+        h3icon.style.color = 'green';
+        animar(`#${id}`, 'heartBeat');
         addAndremoveFavoritesCookies(id, 'add');
 
     }
@@ -605,3 +606,16 @@ function getFavorites() {
 
 }
 // Aquí terminan las funciones para añadir y eliminar marias a favoritos usando las cookies
+
+
+function animar(elem, effect) {
+            
+    const element =  document.querySelector(elem);
+    element.classList.add('animated', effect);
+    element.addEventListener('animationend', function() { 
+
+        element.classList.remove('animated', effect);
+
+    });
+    
+}
