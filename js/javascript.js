@@ -599,16 +599,6 @@ function showAndHiddenElements() {
 
     }
 
-    if ( document.body.scrollHeight === pageYOffset ) {
-
-        footer.style.display = 'block';
-
-    } else {
-
-        footer.style.display = 'none';
-
-    }
-
 };
 
 
