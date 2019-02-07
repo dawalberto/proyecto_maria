@@ -665,8 +665,8 @@ function getFavorites() {
 
     let cokkiesFav = getCookie('favorites');
     console.log('cokkiesFav', cokkiesFav);
+    
     let favorites = JSON.parse(cokkiesFav);
-    console.log('favorites', favorites);
     arrayFavorites = favorites;
     console.log('arrayFavorites', arrayFavorites);
 
