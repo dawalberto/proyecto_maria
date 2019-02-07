@@ -466,6 +466,15 @@ function validateForm() {
 }
 
 
+function validateFormWithKeyEnter(event) {
+
+    if (event.keyCode == 13) {
+        validateForm();
+    }
+
+}
+
+
 function backToTop() {
 
     window.scrollTo(0, 0);
