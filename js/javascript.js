@@ -177,7 +177,7 @@ function clickButtonSearch() {
         window.scrollTo(0, window.innerHeight);
 
     } else {
-
+        barProgress.style.width = '0';
         document.getElementById('containerRes').style.display = 'none';
         alert('NO STRAIN FOUND');
 
