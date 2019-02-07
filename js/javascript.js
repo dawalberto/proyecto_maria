@@ -539,10 +539,10 @@ function getCookie(cname) {
 function deleteCookies() {
 
     let expires = 'expires=Thu, 01 Jan 1970 00:00:00 UTC'
-    document.cookie = 'nombre=' + ';' + expires;
-    document.cookie = 'age=' + ';' + expires;
-    document.cookie = 'email=' + ';' + expires;
-    document.cookie = 'favorites=' + ';' + expires;
+    document.cookie = 'nombre=deleted' + ';' + expires;
+    document.cookie = 'age=deleted' + ';' + expires;
+    document.cookie = 'email=deleted' + ';' + expires;
+    document.cookie = 'favorites=deleted' + ';' + expires;
     
 }
 
@@ -740,9 +740,6 @@ function signOut() {
     document.getElementById('inputCorreo').value = '';
 
     deleteCookies();
-    
-    setTimeout( () => {
-        location.reload();
-    }, 2000);
+    location.reload();
 
 }
