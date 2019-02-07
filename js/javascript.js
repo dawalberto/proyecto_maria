@@ -573,12 +573,12 @@ window.addEventListener('scroll', () => {
     let max = document.body.scrollHeight - innerHeight;
     barProgress.style.width = `${(pageYOffset / max) * 100}%`;
 
-    showAndHiddenBackToTop();
+    showAndHiddenElements();
 
 });
 
 
-function showAndHiddenBackToTop() {
+function showAndHiddenElements() {
 
     let nav = document.getElementById('nav');
     let navtabContent = document.getElementById('nav-tabContent'); 
