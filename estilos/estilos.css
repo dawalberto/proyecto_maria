@@ -171,3 +171,7 @@ a:hover {
     /* color: #007bff; */
     color: rgb(30, 197, 0);
 }
+
+#footerId {
+    display: none;
+}

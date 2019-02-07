@@ -583,6 +583,7 @@ function showAndHiddenBackToTop() {
     let nav = document.getElementById('nav');
     let navtabContent = document.getElementById('nav-tabContent'); 
     let spanDivBackToTop = document.getElementById('spanDivBackToTop');
+    let footer = document.getElementById('footer');
 
     if (pageYOffset < 100) {
 
@@ -595,6 +596,16 @@ function showAndHiddenBackToTop() {
         spanDivBackToTop.style.visibility = 'visible';
         nav.style.display = 'none';
         navtabContent.style.display = 'none';
+
+    }
+
+    if ( document.body.scrollHeight === pageYOffset ) {
+
+        footer.style.display = 'block';
+
+    } else {
+
+        footer.style.display = 'none';
 
     }
 
@@ -665,7 +676,7 @@ function getFavorites() {
 
     let cokkiesFav = getCookie('favorites');
     console.log('cokkiesFav', cokkiesFav);
-    
+
     let favorites = JSON.parse(cokkiesFav);
     arrayFavorites = favorites;
     console.log('arrayFavorites', arrayFavorites);
