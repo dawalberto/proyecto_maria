@@ -9,9 +9,6 @@ let arrayFavorites = new Array();
 
 function getData() {
 
-    animar('#loader', 'fadeOut', 'stylenone');
-    document.getElementById('buttonSearch').disabled = true;
-
     fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
     .then(response => response.json())
     .then(json => {
@@ -30,6 +27,9 @@ function getData() {
             arrayMarias.push(strain);
 
         }
+
+        animar('#loader', 'fadeOut', 'stylenone');
+        document.getElementById('buttonSearch').disabled = true;
 
         if (document.cookie !== '') {
 
@@ -511,14 +511,18 @@ function setCookies(expireDays, cookie) {
         document.cookie = `${ inputNombre };${ expires };path=/`;
         document.cookie = `${ inputEdad };${ expires };path=/`;
         document.cookie = `${ inputCorreo };${ expires };path=/`;
-        setCookieRestartCookies(expires, 'no');
+        setCookieRestartCookies(expireDays, 'no');
 
     }
 
 }
 
 
-function setCookieRestartCookies(expires, siono) {
+function setCookieRestartCookies(expireDays, siono) {
+
+    let date = new Date();
+    date.setDate(date.getDate() + expireDays);
+    let expires = 'expires=' + date.toUTCString();
 
     document.cookie = `restartcookies=${ siono };${ expires };path=/`;
 
@@ -754,11 +758,7 @@ function signOut() {
     document.getElementById('inputEdad').value = '';
     document.getElementById('inputCorreo').value = '';
 
-    let date = new Date();
-    date.setDate(date.getDate() + expireDays);
-    let expires = 'expires=' + date.toUTCString();
-
-    setCookieRestartCookies(expires, 'si');
+    setCookieRestartCookies(16, 'si',);
     location.reload();
 
 }
