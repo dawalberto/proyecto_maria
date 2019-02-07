@@ -455,7 +455,7 @@ function validateForm() {
 
         let daysToExpire = 16;
         setCookies(daysToExpire);
-        setCookies(daysToExpire, 'favorites=');
+        setCookies(daysToExpire, 'favorites=[]');
 
         textContentTabsNav();
 
