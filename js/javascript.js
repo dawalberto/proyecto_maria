@@ -33,7 +33,7 @@ function getData() {
 
         if (document.cookie !== '') {
 
-            document.getElementById('nav-howitworks').innerHTML = textContentTabHowItWorks();
+            textContentTabsNav();
             getFavorites();
             document.getElementById('formInicio').style.display = 'none';
             document.getElementById('divMain').style.display = 'flex';
@@ -455,8 +455,9 @@ function validateForm() {
 
         let daysToExpire = 16;
         setCookies(daysToExpire);
+        setCookies(daysToExpire, 'favorites=');
 
-        document.getElementById('nav-howitworks').innerHTML = textContentTabHowItWorks();
+        textContentTabsNav();
 
         animar('#formInicio', 'slideOutUp', 'stylenone');
         document.getElementById('divMain').style.display = 'flex';
@@ -482,6 +483,7 @@ function backToTop() {
 }
 
 
+// Cookies
 function setCookies(expireDays, cookie) {
 
     let date = new Date();
@@ -531,6 +533,17 @@ function getCookie(cname) {
     }
 
     return '';
+}
+
+
+function deleteCookies() {
+
+    let expires = 'expires=Thu, 01 Jan 1970 00:00:00 UTC'
+    document.cookie = 'nombre=' + ';' + expires;
+    document.cookie = 'age=' + ';' + expires;
+    document.cookie = 'email=' + ';' + expires;
+    document.cookie = 'favorites=' + ';' + expires;
+    
 }
 
 
@@ -659,7 +672,7 @@ function animar(elem, effect, stylenone) {
 }
 
 
-function textContentTabHowItWorks() {
+function textContentTabsNav() {
 
     let user = getCookie('nombre');
     let date = new Date();
@@ -684,7 +697,11 @@ function textContentTabHowItWorks() {
         <p>3. Wow! now you can see all weeds whit the effect and flawor that you have chosen</p>
         <p>4. And finally you can add weeds to favorites doble click in these</p>`;
 
-    return message;
+    document.getElementById('nav-howitworks').innerHTML = message;
+
+    document.getElementById('nav-user').innerHTML = `If you are not ${ user }, click <a style="color: rgb(30, 197, 0); cursor: pointer;" onclick="signOut()">here</a>`;
+    document.getElementById('nav-user-tab').textContent = user.toUpperCase();
+
 
 }
 
@@ -716,4 +733,16 @@ function showAndHiddenTab(idTab, idContentTab, url) {
 }
 
 
+function signOut() {
 
+    document.getElementById('inputNombre').value = '';
+    document.getElementById('inputEdad').value = '';
+    document.getElementById('inputCorreo').value = '';
+
+    deleteCookies();
+    
+    setTimeout( () => {
+        location.reload();
+    }, 2000);
+
+}
