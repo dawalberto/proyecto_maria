@@ -538,11 +538,11 @@ function getCookie(cname) {
 
 function deleteCookies() {
 
-    let expires = 'expires=Thu, 01 Jan 1970 00:00:00 UTC'
-    document.cookie = 'nombre=deleted' + ';' + expires;
-    document.cookie = 'age=deleted' + ';' + expires;
-    document.cookie = 'email=deleted' + ';' + expires;
-    document.cookie = 'favorites=deleted' + ';' + expires;
+    let expires = 'expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+    document.cookie = 'nombre=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
+    document.cookie = 'age=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
+    document.cookie = 'email=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
+    document.cookie = 'favorites=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
     
 }
 
