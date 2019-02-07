@@ -665,7 +665,7 @@ function textContentTabHowItWorks() {
         welcome = 'Good evening';
     }
 
-    let message = `<p>${ welcome } ${ user }!</p>
+    let message = `<p><strong>${ welcome } ${ user }!</strong></p>
         <p>In this page you can search any type of marijuana selecting the effect and flawor that you want</p>
         <p>Don't worry if you don't know what is Sativa, Indica or Hibryd. This page is oriented too to people that never smoke weed and not know nathing about the world of the marijuana</p>
         <p>In the tab 'RACES' you can find the explain of the marijuana types if you want know</p>
