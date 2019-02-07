@@ -9,6 +9,9 @@ let arrayFavorites = new Array();
 
 function getData() {
 
+    animar('#loader', 'fadeOut', 'stylenone');
+    document.getElementById('buttonSearch').disabled = true;
+
     fetch('https://strainapi.evanbusse.com/OQSVRIt/strains/search/all')
     .then(response => response.json())
     .then(json => {
@@ -28,15 +31,19 @@ function getData() {
 
         }
 
-        animar('#loader', 'fadeOut', 'stylenone');
-        document.getElementById('buttonSearch').disabled = true;
-
         if (document.cookie !== '') {
 
-            textContentTabsNav();
-            getFavorites();
-            document.getElementById('formInicio').style.display = 'none';
-            document.getElementById('divMain').style.display = 'flex';
+            let cookieRestart = getCookie('restartcookies');
+            console.log(cookieRestart);
+
+            if (cookieRestart === 'no') {
+
+                textContentTabsNav();
+                getFavorites();
+                document.getElementById('formInicio').style.display = 'none';
+                document.getElementById('divMain').style.display = 'flex';
+
+            }
 
         } 
 
@@ -504,8 +511,16 @@ function setCookies(expireDays, cookie) {
         document.cookie = `${ inputNombre };${ expires };path=/`;
         document.cookie = `${ inputEdad };${ expires };path=/`;
         document.cookie = `${ inputCorreo };${ expires };path=/`;
+        setCookieRestartCookies(expires, 'no');
 
     }
+
+}
+
+
+function setCookieRestartCookies(expires, siono) {
+
+    document.cookie = `restartcookies=${ siono };${ expires };path=/`;
 
 }
 
@@ -536,15 +551,15 @@ function getCookie(cname) {
 }
 
 
-function deleteCookies() {
+// function deleteCookies() {
 
-    let expires = 'expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-    document.cookie = 'nombre=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
-    document.cookie = 'age=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
-    document.cookie = 'email=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
-    document.cookie = 'favorites=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
+//     let expires = 'expires=Thu, 01 Jan 1970 00:00:00 UTC;'
+//     document.cookie = 'nombre=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
+//     document.cookie = 'age=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
+//     document.cookie = 'email=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
+//     document.cookie = 'favorites=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
     
-}
+// }
 
 
 // Evento de raton usado para agrandar o disminuir la barra de progreso según nuestra navegación por la página.
@@ -739,7 +754,11 @@ function signOut() {
     document.getElementById('inputEdad').value = '';
     document.getElementById('inputCorreo').value = '';
 
-    deleteCookies();
+    let date = new Date();
+    date.setDate(date.getDate() + expireDays);
+    let expires = 'expires=' + date.toUTCString();
+
+    setCookieRestartCookies(expires, 'si');
     location.reload();
 
 }
