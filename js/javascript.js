@@ -481,7 +481,7 @@ function validateForm() {
         fillTextContentTabsNav();
         filltextContentFooter();
 
-        animar('#formInicio', 'slideOutUp', 'stylenone');
+        animar('#formInicio', 'fadeOut', 'stylenone');
         document.getElementById('divMain').style.display = 'flex';
 
     }
