@@ -708,14 +708,14 @@ function textContentTabsNav() {
     }
 
     let message = `<p><strong>${ welcome } ${ user }!</strong></p>
-        <p>In this page you can search any type of marijuana selecting the effect and flawor that you want</p>
-        <p>Don't worry if you don't know what is Sativa, Indica or Hibryd. This page is oriented too to people that never smoke weed and not know nathing about the world of the marijuana</p>
-        <p>In the tab 'RACES' you can find the explain of the marijuana types if you want know</p>
-        <p>Fine, the functioning is sample</p> 
+        <p>In this page you can search for type of marijuana selecting the effect and flavor that you want</p>
+        <p>Don't worry if you don't know what is Sativa, Indica or Hibryd. This page is oriented to people that never smoke weed and don't know nathing about the world of the marijuana</p>
+        <p>In the tab 'RACES' you can find the explanation of the marijuana types if you want know</p>
+        <p>Fine, the functioning is simple</p> 
         <p>1. Select the effect and flawor that you want and check the races that you want</p>
         <p>2. Then click the button 'SEARCH'</p> 
-        <p>3. Wow! now you can see all weeds whit the effect and flawor that you have chosen</p>
-        <p>4. And finally you can add weeds to favorites doble click in these</p>`;
+        <p>3. Wow! now you can see all weed with the effect and flawor that you have chosen</p>
+        <p>4. And finally you can add weed to favorites by double clicking</p>`;
 
     document.getElementById('nav-howitworks').innerHTML = message;
 
