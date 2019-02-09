@@ -4,7 +4,7 @@
 
 - [x] 1. Eventos de ratón (2 además de onclick).
 
-- [ ] 2. Eventos de teclado para validaciones de campos (2 como mínimo).
+- [x] 2. Eventos de teclado para validaciones de campos (2 como mínimo).
 
 - [x] 3. Expresiones regulares (3 como mínimo).
 

@@ -34,7 +34,7 @@ function getData() {
         if (document.cookie !== '') {
 
             let cookieRestart = getCookie('restartcookies');
-            console.log(cookieRestart);
+            console.log('cookieRestart', cookieRestart);
 
             if (cookieRestart === 'no') {
 
@@ -217,6 +217,7 @@ function generateDescMarias() {
 
                     document.getElementById('buttonSearch').disabled = false;
                     document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="spanSearch"><i class="fas fa-search"></i></span>';
+                    addEventToShowFavorites();
                 
                 }
 
@@ -822,4 +823,36 @@ function generateArrayFavs() {
 
     return arrayFavorites;
         
+}
+
+
+function addEventToShowFavorites() {
+
+    window.addEventListener('keydown', function(event) {
+
+        if (event.ctrlKey && (event.code === 'Keyl' || event.code === 'KeyL')) {
+
+            console.log('Control + l')
+            event.preventDefault();
+
+            if (arrayFavoritesCookies.length > 0) {
+
+                document.getElementById('containerRes').style.display = 'block';
+                document.getElementById('footer').style.display = 'block';
+                generateCardsMarias('toFavorites');
+                window.scrollTo(0, window.innerHeight);
+
+            } else {
+
+                barProgress.style.width = '0';
+                document.getElementById('containerRes').style.display = 'none';
+                document.getElementById('footer').style.display = 'none';
+                alert("YOU DON'T HAVE WEED FAVORITES");
+
+            }
+
+        }
+
+    });
+
 }
