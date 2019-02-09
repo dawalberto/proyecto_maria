@@ -75,7 +75,7 @@ h3 {
     position: absolute;
     width: 100vw;
     height: 100vh;
-    opacity: 0.7;
+    /* opacity: 0.7; */
     /* background-image: linear-gradient(to bottom, rgb(30, 197, 0),rgb(243, 247, 0), rgb(223, 0, 0)); */
     /* background-image: linear-gradient(to bottom, #2E7F20, #D0C955, #A23933);         */
     background-image: linear-gradient(to right, #6A9113, #141517);          
@@ -198,12 +198,8 @@ hr {
     background-color:gray;
 }
 
-@media (min-width: 576px) { 
+@media (max-width: 576px) { 
     body {
-        background-color: gray;
-    }
-
-    #formInicio {
-        opacity: 1.0;
+        background-image: linear-gradient(to right, #6A9113, #141517);                  
     }
  }
