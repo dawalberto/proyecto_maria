@@ -197,3 +197,13 @@ a:hover {
 hr {
     background-color:gray;
 }
+
+@media (min-width: 576px) { 
+    body {
+        background-color: gray;
+    }
+
+    #formInicio {
+        opacity: 1.0;
+    }
+ }
