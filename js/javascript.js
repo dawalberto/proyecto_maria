@@ -29,7 +29,7 @@ function getData() {
         }
 
         animar('#loader', 'fadeOut', 'stylenone');
-        document.getElementById('buttonSearch').disabled = true;
+        document.getElementById('buttonSearch').disabled = false; //Poner a true para produccion
 
         if (document.cookie !== '') {
 
@@ -38,7 +38,8 @@ function getData() {
 
             if (cookieRestart === 'no') {
 
-                textContentTabsNav();
+                fillTextContentTabsNav();
+                filltextContentFooter();
                 getFavorites();
                 document.getElementById('formInicio').style.display = 'none';
                 document.getElementById('divMain').style.display = 'flex';
@@ -212,7 +213,7 @@ function generateDescMarias() {
 
                 document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
 
-                if (i >= lengtharrayMarias - 10) {
+                if (i >= lengtharrayMarias - 1) {
 
                     document.getElementById('buttonSearch').disabled = false;
                     document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="spanSearch"><i class="fas fa-search"></i></span>';
@@ -466,7 +467,8 @@ function validateForm() {
         setCookies(daysToExpire);
         setCookies(daysToExpire, 'favorites=[]');
 
-        textContentTabsNav();
+        fillTextContentTabsNav();
+        filltextContentFooter();
 
         animar('#formInicio', 'slideOutUp', 'stylenone');
         document.getElementById('divMain').style.display = 'flex';
@@ -694,7 +696,7 @@ function animar(elem, effect, stylenone) {
 }
 
 
-function textContentTabsNav() {
+function fillTextContentTabsNav() {
 
     let user = getCookie('nombre');
     let date = new Date();
@@ -724,6 +726,18 @@ function textContentTabsNav() {
     document.getElementById('nav-user').innerHTML = `If you are not ${ user }, click <a style="color: rgb(30, 197, 0); cursor: pointer;" onclick="signOut()">here</a>`;
     document.getElementById('nav-user-tab').textContent = user.toUpperCase();
 
+
+}
+
+
+function filltextContentFooter() {
+
+    let date = new Date();
+    date = date.getFullYear();
+
+    let textcontent = `© ${ date } Alberto García Sola, hosted with <span class="text-danger">❤</span> by GitHub`;
+
+    document.getElementById('textContentFooter').innerHTML = textcontent;
 
 }
 
