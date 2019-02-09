@@ -181,11 +181,13 @@ function clickButtonSearch() {
 
         addEvents();
         document.getElementById('containerRes').style.display = 'block';
+        document.getElementById('footer').style.display = 'block';
         window.scrollTo(0, window.innerHeight);
 
     } else {
         barProgress.style.width = '0';
         document.getElementById('containerRes').style.display = 'none';
+        document.getElementById('footer').style.display = 'none';
         alert('NO STRAIN FOUND');
 
     }

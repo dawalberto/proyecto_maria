@@ -168,10 +168,50 @@ a {
 }
 
 a:hover {
-    /* color: #007bff; */
     color: rgb(30, 197, 0);
 }
 
-#footerId {
+#footer {
     display: none;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+#aTwitter, #aGithub {
+    color: white
+}
+
+#aTwitter:hover {
+    color: #1dcaff;
+}
+
+#aGithub:hover {
+    color: lightgray;
+}
+
+
+hr {
+    color: lightgrey;
+}
+
+html {
+    font-size: 1rem;
+}
+  
+@include media-breakpoint-up(sm) {
+    html {
+        font-size: 1.2rem;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    html {
+        font-size: 1.4rem;
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    html {
+        font-size: 1.6rem;
+    }
 }
