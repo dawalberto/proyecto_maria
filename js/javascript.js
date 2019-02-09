@@ -3,7 +3,7 @@ let arrayMarias = new Array();
 let arrayEffectsAll = new Array();
 let arrayFlavorsAll = new Array();
 let arrayMariasSearch = new Array();
-let arrayFavorites = new Array();
+let arrayFavoritesCookies = new Array();
 
 
 
@@ -180,12 +180,12 @@ function clickButtonSearch() {
 
     if (arrayMariasSearch.length > 0) {
 
-        addEvents();
         document.getElementById('containerRes').style.display = 'block';
         document.getElementById('footer').style.display = 'block';
         window.scrollTo(0, window.innerHeight);
 
     } else {
+
         barProgress.style.width = '0';
         document.getElementById('containerRes').style.display = 'none';
         document.getElementById('footer').style.display = 'none';
@@ -227,22 +227,30 @@ function generateDescMarias() {
 }
 
 
-function generateCardsMarias() {
+function generateCardsMarias(toFavorites) {
+
+    let arrayToIterate;
+
+    if (toFavorites) {
+        arrayToIterate = generateArrayFavs();
+    } else {
+        arrayToIterate = arrayMariasSearch;
+    }
 
     document.getElementById('rowRes').textContent = '';
 
     let selectEfecto = document.getElementById('selectEfecto').value;
 
-    for (let i = 0; i < arrayMariasSearch.length; i++) {
+    for (let i = 0; i < arrayToIterate.length; i++) {
 
-        let title = arrayMariasSearch[i].nom.toUpperCase();
-        let race = arrayMariasSearch[i].race.toUpperCase();
+        let title = arrayToIterate[i].nom.toUpperCase();
+        let race = arrayToIterate[i].race.toUpperCase();
         let desc;
         let effect;
 
-        if (arrayMariasSearch[i].description != null) {
+        if (arrayToIterate[i].description != null) {
 
-            desc = arrayMariasSearch[i].description;
+            desc = arrayToIterate[i].description;
 
         } else {
 
@@ -250,11 +258,11 @@ function generateCardsMarias() {
 
         }
 
-        if (arrayMariasSearch[i].effectsM.includes(selectEfecto)) {
+        if (arrayToIterate[i].effectsM.includes(selectEfecto)) {
 
             effect = 'EFFECT - MEDICAL';
 
-        } else if (arrayMariasSearch[i].effectsP.includes(selectEfecto)) {
+        } else if (arrayToIterate[i].effectsP.includes(selectEfecto)) {
 
             effect = 'EFFECT - POSITIVE';
 
@@ -270,7 +278,7 @@ function generateCardsMarias() {
         col.classList.add('my-2');
 
         let card = document.createElement('div');
-        card.id = 'card' + arrayMariasSearch[i].id;
+        card.id = 'card' + arrayToIterate[i].id;
         card.classList.add('card');
         card.classList.add('h-100');
         card.classList.add('cursorPointer');
@@ -283,7 +291,7 @@ function generateCardsMarias() {
         h5title.textContent = title;
 
         let h3icon = document.createElement('h3');
-        h3icon.id = 'h3icon' + arrayMariasSearch[i].id;
+        h3icon.id = 'hicon' + arrayToIterate[i].id;
         
         let iicon = document.createElement('i');
         iicon.classList.add('fas');
@@ -306,7 +314,7 @@ function generateCardsMarias() {
         pdescription.textContent = desc;
 
 
-        if (arrayFavorites.indexOf('h3icon' + arrayMariasSearch[i].id) >= 0) {
+        if (arrayFavoritesCookies.indexOf('hicon' + arrayToIterate[i].id) >= 0) {
 
             // h3icon.classList.add('favoritesColor');
             h3icon.style.color = 'green';
@@ -329,6 +337,8 @@ function generateCardsMarias() {
         document.getElementById('rowRes').appendChild(col);
 
     }
+
+    addEvents();
 
 }
 
@@ -640,7 +650,7 @@ function addAndremoveFavorite() {
 
     }
 
-    console.log(arrayFavorites);
+    console.log(arrayFavoritesCookies);
 
 }
 
@@ -649,16 +659,16 @@ function addAndremoveFavoritesCookies(id, add) {
 
     if (add) {
 
-        arrayFavorites.push(id);
+        arrayFavoritesCookies.push(id);
 
     } else {
 
-        let pos = arrayFavorites.indexOf(id);
-        arrayFavorites.splice(pos, 1);
+        let pos = arrayFavoritesCookies.indexOf(id);
+        arrayFavoritesCookies.splice(pos, 1);
 
     }
 
-    let arrayStringify = JSON.stringify(arrayFavorites);
+    let arrayStringify = JSON.stringify(arrayFavoritesCookies);
     let cookie = 'favorites=' + arrayStringify;
     setCookies(16, cookie);
 
@@ -672,8 +682,8 @@ function getFavorites() {
     console.log('cokkiesFav', cokkiesFav);
 
     let favorites = JSON.parse(cokkiesFav);
-    arrayFavorites = favorites;
-    console.log('arrayFavorites', arrayFavorites);
+    arrayFavoritesCookies = favorites;
+    console.log('arrayFavoritesCookies', arrayFavoritesCookies);
 
 }
 // Aquí terminan las funciones para añadir y eliminar marias a favoritos usando las cookies
@@ -778,4 +788,38 @@ function signOut() {
     setCookieRestartCookies(16, 'si',);
     location.reload();
 
+}
+
+
+function generateArrayFavs() {
+
+    let arrayIdFavorites = new Array();
+    let arrayFavorites = new Array();
+    let id = '';
+
+    for (let i = 0; i < arrayFavoritesCookies.length; i++) {
+
+        id = '';
+
+        for (let j = 0; j < arrayFavoritesCookies[i].length; j++) {
+
+            if ( !isNaN(arrayFavoritesCookies[i][j]) )
+                id += arrayFavoritesCookies[i][j];
+
+        }
+
+        arrayIdFavorites.push(id)
+
+    }
+
+
+    for (let i = 0; i < arrayMarias.length; i++) {
+
+        if ( arrayIdFavorites.includes( String(arrayMarias[i].id)) )
+            arrayFavorites.push(arrayMarias[i]);
+
+    }
+
+    return arrayFavorites;
+        
 }
