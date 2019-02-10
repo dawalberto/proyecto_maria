@@ -29,7 +29,7 @@ function getData() {
         }
 
         animar('#loader', 'fadeOut', 'stylenone');
-        document.getElementById('buttonSearch').disabled = false; //Poner a true para produccion
+        document.getElementById('buttonSearch').disabled = true; //Poner a true para produccion
 
         if (document.cookie !== '') {
 
@@ -199,6 +199,7 @@ function clickButtonSearch() {
 function generateDescMarias() {
 
     let lengtharrayMarias = arrayMarias.length;
+    let j = 0;
 
     for (let i = 0; i < lengtharrayMarias; i++) {
 
@@ -209,11 +210,12 @@ function generateDescMarias() {
             .then(response => response.json())
             .then(json => {
 
+                j++;
                 arrayMarias[i].description = json.desc;
 
                 document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
 
-                if (i >= lengtharrayMarias - 1) {
+                if (j >= lengtharrayMarias - 1) {
 
                     document.getElementById('buttonSearch').disabled = false;
                     document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="spanSearch"><i class="fas fa-search"></i></span>';
