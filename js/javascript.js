@@ -736,7 +736,7 @@ function fillTextContentTabsNav() {
 
     document.getElementById('nav-howitworks').innerHTML = message;
 
-    document.getElementById('nav-user').innerHTML = `If you are not ${ user }, click <a style="color: rgb(30, 197, 0); cursor: pointer;" onclick="signOut()">here</a>`;
+    document.getElementById('nav-user').innerHTML = `If you are not ${ user }, click <a class="linkGreen" target="_blank" onclick="signOut()">here</a>`;
     document.getElementById('nav-user-tab').textContent = user.toUpperCase();
 
 
