@@ -314,6 +314,7 @@ function generateCardsMarias(toFavorites) {
 
         let pdescription = document.createElement('p');
         pdescription.classList.add('card-text');
+        pdescription.classList.add('text-justify');
         pdescription.textContent = desc;
 
 
