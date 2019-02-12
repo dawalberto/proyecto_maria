@@ -320,7 +320,6 @@ function generateCardsMarias(toFavorites) {
 
         if (arrayFavoritesCookies.indexOf('hicon' + arrayToIterate[i].id) >= 0) {
 
-            // h3icon.classList.add('favoritesColor');
             h3icon.style.color = 'green';
             console.log('favorita encontrada');
 
@@ -360,7 +359,7 @@ function validateForm() {
     function validateNom() {
 
         let error;
-        let regExpNom = /^[A-Za-z]+$/;
+        let regExpNom = /^[A-Za-z]+$/; ///////////////////////////////// EXPRESIÓN REGULAR /////////////////////
         
         if (inputNombre === '' || inputNombre === null) {
 
@@ -394,7 +393,7 @@ function validateForm() {
     function validateEdad() {
 
         let error;
-        let regExpEdad = /^\d{1,}$/;
+        let regExpEdad = /^\d{1,}$/; ///////////////////////////////// EXPRESIÓN REGULAR /////////////////////
 
         if (inputEdad === '' || inputEdad === null) {
 
@@ -439,7 +438,7 @@ function validateForm() {
     function validateEmail() {
 
         let error;
-        let regExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+        let regExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; ///////////////////////////////// EXPRESIÓN REGULAR /////////////////////
 
         if (inputCorreo === '' || inputCorreo === null) {
 
@@ -514,7 +513,6 @@ function setCookies(expireDays, cookie) {
     let date = new Date();
     date.setDate(date.getDate() + expireDays);
     let expires = 'expires=' + date.toUTCString();
-    console.log(expires);
 
     if (cookie) {
 
@@ -547,6 +545,7 @@ function setCookieRestartCookies(expireDays, siono) {
 }
 
 
+// Función sacada de w3schools
 function getCookie(cname) {
 
     let name = cname + '=';
@@ -573,17 +572,7 @@ function getCookie(cname) {
 }
 
 
-// function deleteCookies() {
-
-//     let expires = 'expires=Thu, 01 Jan 1970 00:00:00 UTC;'
-//     document.cookie = 'nombre=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
-//     document.cookie = 'age=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
-//     document.cookie = 'email=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
-//     document.cookie = 'favorites=' + ';' + expires + 'domain=dawalberto.github.io;' + 'path=/';
-    
-// }
-
-
+/////////////////////////// EVENTO DE RATÓN /////////////////////
 // Evento de raton usado para agrandar o disminuir la barra de progreso según nuestra navegación por la página.
 let barProgress = document.getElementById('progress');
 window.addEventListener('scroll', () => {
@@ -627,6 +616,7 @@ function addEvents() {
 
     Array.from(classname).forEach(function(element) {
 
+        /////////////////////////// EVENTO DE RATÓN /////////////////////
         element.addEventListener('dblclick',  addAndremoveFavorite);
 
     });
@@ -649,12 +639,10 @@ function addAndremoveFavorite() {
 
         // ADD FAVORITE
         h3icon.style.color = 'green';
-        animar(`#${id}`, 'heartBeat');
+        animar(`#${ id }`, 'heartBeat');
         addAndremoveFavoritesCookies(id, 'add');
 
     }
-
-    console.log(arrayFavoritesCookies);
 
 }
 
@@ -676,18 +664,15 @@ function addAndremoveFavoritesCookies(id, add) {
     let cookie = 'favorites=' + arrayStringify;
     setCookies(16, cookie);
 
-    console.log('document.cookie', document.cookie)
 }
 
 
 function getFavorites() {
 
     let cokkiesFav = getCookie('favorites');
-    console.log('cokkiesFav', cokkiesFav);
 
     let favorites = JSON.parse(cokkiesFav);
     arrayFavoritesCookies = favorites;
-    console.log('arrayFavoritesCookies', arrayFavoritesCookies);
 
 }
 // Aquí terminan las funciones para añadir y eliminar marias a favoritos usando las cookies
@@ -835,7 +820,6 @@ function addEventToShowFavorites() {
 
         if (event.ctrlKey && (event.code === 'Keyl' || event.code === 'KeyL')) {
 
-            console.log('Control + l')
             event.preventDefault();
 
             if (arrayFavoritesCookies.length > 0) {
