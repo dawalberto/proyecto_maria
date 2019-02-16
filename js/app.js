@@ -722,7 +722,8 @@ function fillTextContentTabsNav() {
         <p>1. Select the effect and flawor that you want and check the races that you want</p>
         <p>2. Then click the button 'SEARCH'</p> 
         <p>3. Wow! now you can see all weed with the effect and flawor that you have chosen</p>
-        <p>4. And finally you can add weed to favorites by double clicking</p>`;
+        <p>4. And finally you can add weed to favorites by double clicking</p>
+        <p>To see your favorites you can press Ctrl+l</p>`;
 
     document.getElementById('nav-howitworks').innerHTML = message;
 
