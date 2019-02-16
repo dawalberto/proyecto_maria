@@ -90,6 +90,8 @@ function effectsAll() {
 
     })
 
+    arrayEffectsAll.sort();
+
 }
 
 
@@ -107,6 +109,8 @@ function flavorsAll() {
         })
 
     })
+
+    arrayFlavorsAll.sort();
 
 }
 
