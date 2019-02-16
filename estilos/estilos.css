@@ -198,6 +198,15 @@ hr {
     background-color:gray;
 }
 
+.linkGreen {
+    color: rgb(30, 197, 0); 
+    cursor: pointer;
+}
+
+.jumbotron {
+    border-radius: 0;
+}
+
 @media (max-width: 576px) { 
     body {
         background-image: linear-gradient(to right, #6A9113, #141517);                  
