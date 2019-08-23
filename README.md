@@ -14,7 +14,7 @@
 
 - [x] 6. Una carpeta denominada js que contenga las funciones JavaScript con los requerimientos que se piden en el proyecto.
 
-- [ ] 7. Memoria del proyecto en pdf que incluya la siguiente información:
+- [x] 7. Memoria del proyecto en pdf que incluya la siguiente información:
 
  * Título de la aplicación.
  * Nombre y apellidos.
