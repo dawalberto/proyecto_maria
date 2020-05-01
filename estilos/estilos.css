@@ -51,6 +51,7 @@ h3 {
 
 #loader {
     position: absolute;
+    top: 0;
     width: 100vw;
     height: 100vh;
     /* background-image: linear-gradient(to bottom, rgb(30, 197, 0),rgb(243, 247, 0), rgb(223, 0, 0)); */
@@ -177,7 +178,6 @@ a:hover {
 }
 
 #footer {
-    display: none;
     margin-bottom: 0;
     text-align: center;
 }
