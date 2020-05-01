@@ -54,10 +54,8 @@ h3 {
     top: 0;
     width: 100vw;
     height: 100vh;
-    /* background-image: linear-gradient(to bottom, rgb(30, 197, 0),rgb(243, 247, 0), rgb(223, 0, 0)); */
-    /* background-image: linear-gradient(to bottom, #2E7F20, #D0C955, #A23933);     */
-    background-image: linear-gradient(to right, #6A9113, #141517);
-    /* background-image: linear-gradient(to bottom, DarkGreen, GoldenRod, DarkRed);                 */
+    background: rgb(0,0,0);
+    background: linear-gradient(0deg, rgba(0,0,0,1) 30%, rgba(40,167,69,1) 100%);
     z-index: 5;
     text-align: center;
 }
@@ -167,6 +165,7 @@ input[type=checkbox], input[type=radio] {
 .nav-tabs {
     z-index: 2;
     border-bottom: 0;
+    background-color: #000000;
 }
 
 a {
@@ -180,6 +179,7 @@ a:hover {
 #footer {
     margin-bottom: 0;
     text-align: center;
+    background-color: #000000;
 }
 
 #aTwitter, #aGithub {
@@ -209,6 +209,7 @@ hr {
 
 @media (max-width: 576px) { 
     body {
-        background-image: linear-gradient(to right, #6A9113, #141517);                  
+        background: rgb(0,0,0);
+        background: linear-gradient(0deg, rgba(0,0,0,1) 30%, rgba(40,167,69,1) 100%);               
     }
- }
+}
