@@ -31,28 +31,17 @@ function getData() {
         animar('#loader', 'fadeOut', 'stylenone');
         document.getElementById('buttonSearch').disabled = true; //Poner a true para produccion
 
-        if (document.cookie !== '') {
+        if (document.cookie !== '')
+            getFavorites();
 
-            let cookieRestart = getCookie('restartcookies');
-            console.log('cookieRestart', cookieRestart);
-
-            if (cookieRestart === 'no') {
-
-                fillTextContentTabsNav();
-                filltextContentFooter();
-                getFavorites();
-                document.getElementById('formInicio').style.display = 'none';
-                document.getElementById('divMain').style.display = 'flex';
-
-            }
-
-        } 
+        fillTextContentTabsNav();
+        filltextContentFooter();
+        document.getElementById('divMain').style.display = 'flex';
 
         generateDescMarias();
 
         effectsAll();
         flavorsAll();
-
         fillSelects();
 
     });
@@ -200,36 +189,26 @@ function clickButtonSearch() {
 }
 
 
-function generateDescMarias() {
+async function generateDescMarias() {
 
     let lengtharrayMarias = arrayMarias.length;
-    let j = 0;
 
     for (let i = 0; i < lengtharrayMarias; i++) {
 
         let id = arrayMarias[i].id;
         let url = 'https://strainapi.evanbusse.com/OQSVRIt/strains/data/desc/' + id;
 
-        fetch(url)
-            .then(response => response.json())
-            .then(json => {
+        let response = await fetch(url);
+        let jsonData = await response.json();
 
-                j++;
-                arrayMarias[i].description = json.desc;
-
-                document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
-
-                if (j >= lengtharrayMarias - 1) {
-
-                    document.getElementById('buttonSearch').disabled = false;
-                    document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="spanSearch"><i class="fas fa-search"></i></span>';
-                    addEventToShowFavorites();
-                
-                }
-
-            });
+        arrayMarias[i].description = jsonData.desc;
+        document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
 
     }
+
+    document.getElementById('buttonSearch').disabled = false;
+    document.getElementById('buttonSearch').innerHTML = 'SEARCH <span class="spanSearch"><i class="fas fa-search"></i></span>';
+    addEventToShowFavorites();
 
 }
 
@@ -348,161 +327,6 @@ function generateCardsMarias(toFavorites) {
     addEvents();
 
 }
-
-
-function validateForm() {
-
-    let inputNombre = document.getElementById('inputNombre').value;
-    let inputEdad = document.getElementById('inputEdad').value;
-    let inputCorreo = document.getElementById('inputCorreo').value;
-
-    let spanNombre = document.getElementById('spanNombre');
-    let spanEdad = document.getElementById('spanEdad');
-    let spanCorreo = document.getElementById('spanCorreo');
-
-    function validateNom() {
-
-        let error;
-        let regExpNom = /^[A-Za-z]+$/; ///////////////////////////////// EXPRESIÓN REGULAR /////////////////////
-        
-        if (inputNombre === '' || inputNombre === null) {
-
-            spanNombre.textContent = 'THIS FIELD IS REQUIRED*';
-            animar(`#${spanNombre.id}`, 'fadeIn');
-            spanNombre.style.visibility = 'visible';
-            error = true;
-
-        } else {
-
-            if (regExpNom.test(inputNombre)) {
-
-                spanNombre.style.visibility = 'hidden';
-                error = false;
-
-            } else {
-
-                spanNombre.textContent = 'THIS FIELD ONLY ALLOWS LETTERS';
-                animar(`#${spanNombre.id}`, 'fadeIn');
-                spanNombre.style.visibility = 'visible';
-                error = true;
-
-            }
-
-        }
-
-        return error;
-
-    }
-
-    function validateEdad() {
-
-        let error;
-        let regExpEdad = /^\d{1,}$/; ///////////////////////////////// EXPRESIÓN REGULAR /////////////////////
-
-        if (inputEdad === '' || inputEdad === null) {
-
-            spanEdad.textContent = 'THIS FIELD IS REQUIRED*';
-            animar(`#${spanEdad.id}`, 'fadeIn');
-            spanEdad.style.visibility = 'visible';
-            error = true;
-
-        } else {
-
-            if (regExpEdad.test(inputEdad)) {
-
-                if (Number(inputEdad) >= 18) {
-
-                    spanEdad.style.visibility = 'hidden';
-                    error = false;
-
-                } else {
-
-                    spanEdad.textContent = 'SORRY THIS PAGE IS ONLY FOR ADULTS';
-                    animar(`#${spanEdad.id}`, 'fadeIn');
-                    spanEdad.style.visibility = 'visible';
-                    error = true;
-
-                }
-                
-            } else {
-
-                spanEdad.textContent = 'THIS FIELD ONLY ALLOWS NUMBERS';
-                animar(`#${spanEdad.id}`, 'fadeIn');
-                spanEdad.style.visibility = 'visible';
-                error = true;
-
-            }
-
-        }
-
-        return error;
-
-    } 
-
-    function validateEmail() {
-
-        let error;
-        let regExpEmail = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; ///////////////////////////////// EXPRESIÓN REGULAR /////////////////////
-
-        if (inputCorreo === '' || inputCorreo === null) {
-
-            spanCorreo.textContent = 'THIS FIELD IS REQUIRED*';
-            animar(`#${spanCorreo.id}`, 'fadeIn');
-            spanCorreo.style.visibility = 'visible';
-            error = true;
-
-        } else {
-
-            if (regExpEmail.test(inputCorreo)) {
-
-                spanCorreo.style.visibility = 'hidden';
-                error = false;
-
-            } else {
-
-                spanCorreo.textContent = 'NOT VALID EMAIL';
-                animar(`#${spanCorreo.id}`, 'fadeIn');
-                spanCorreo.style.visibility = 'visible';
-                error = true;
-
-            }
-
-        }
-
-        return error;
-
-    } 
-
-
-    let nom = validateNom();
-    let edad = validateEdad();
-    let email = validateEmail();
-    
-    if (!nom && !edad && !email) {
-
-        let daysToExpire = 16;
-        setCookies(daysToExpire);
-        setCookies(daysToExpire, 'favorites=[]');
-
-        fillTextContentTabsNav();
-        filltextContentFooter();
-
-        animar('#formInicio', 'fadeOut', 'stylenone');
-        document.getElementById('divMain').style.display = 'flex';
-
-    }
-    
-}
-
-
-function validateFormWithKeyEnter(event) {
-
-    if (event.keyCode == 13) {
-        validateForm();
-    }
-
-}
-
 
 function backToTop() {
 
@@ -701,7 +525,6 @@ function animar(elem, effect, stylenone) {
 
 function fillTextContentTabsNav() {
 
-    let user = getCookie('nombre');
     let date = new Date();
     let hour = date.getHours();
     let welcome;
@@ -714,7 +537,7 @@ function fillTextContentTabsNav() {
         welcome = 'Good evening';
     }
 
-    let message = `<p><strong>${ welcome } ${ user }!</strong></p>
+    let message = `<p><strong>${ welcome }!</strong></p>
         <p>In this page you can search for type of marijuana selecting the effect and flavor that you want</p>
         <p>Don't worry if you don't know what is Sativa, Indica or Hibryd. This page is oriented to people that never smoke weed and don't know nathing about the world of the marijuana</p>
         <p>In the tab 'RACES' you can find the explanation of the marijuana types if you want know</p>
@@ -727,10 +550,6 @@ function fillTextContentTabsNav() {
 
     document.getElementById('nav-howitworks').innerHTML = message;
 
-    document.getElementById('nav-user').innerHTML = `If you are not ${ user }, click <a style="color: rgb(30, 197, 0); cursor: pointer;" onclick="signOut()">here</a>`;
-    document.getElementById('nav-user-tab').textContent = user.toUpperCase();
-
-
 }
 
 
@@ -739,7 +558,7 @@ function filltextContentFooter() {
     let date = new Date();
     date = date.getFullYear();
 
-    let textcontent = `© ${ date } Alberto García Sola, hosted with <span class="text-danger">❤</span> by GitHub`;
+    let textcontent = `© 2018 - ${ date } Alberto García Sola, hosted with <span class="text-danger">❤</span> by GitHub`;
 
     document.getElementById('textContentFooter').innerHTML = textcontent;
 
@@ -769,18 +588,6 @@ function showAndHiddenTab(idTab, idContentTab, url) {
         }, 100);
 
     }
-
-}
-
-
-function signOut() {
-
-    document.getElementById('inputNombre').value = '';
-    document.getElementById('inputEdad').value = '';
-    document.getElementById('inputCorreo').value = '';
-
-    setCookieRestartCookies(16, 'si',);
-    location.reload();
 
 }
 
