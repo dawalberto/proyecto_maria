@@ -200,7 +200,7 @@ async function generateDescMarias() {
         let jsonData = await response.json();
 
         arrayMarias[i].description = jsonData.desc;
-        document.getElementById('buttonSearch').textContent = 'GETTING STRAINS ' + i + '/' + lengtharrayMarias;
+        document.getElementById('buttonSearch').textContent = `GETTING STRAINS ${i} / ${lengtharrayMarias}`;
 
     }
 
